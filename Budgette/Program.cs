@@ -17,6 +17,14 @@ namespace Budgette
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+
+            InfoSave s = new InfoSave("Kaiser");
+            MessageBox.Show(s.accounts.ReturnAllAccountInfo());
+
+            s.accounts.AddAccount("Geoffrey", 10);
+            s.SaveUser();
+
+            Application.Exit();
         }
     }
 }

@@ -31,6 +31,11 @@ namespace Budgette
             return null;
         }
 
+        public int NumOfAccounts()
+        {
+            return accountsList.Count;
+        }
+
         public bool AddAccount(string pName, decimal pBalance=0.0m)
         {
             Account newAcc = new Account(pName, pBalance);

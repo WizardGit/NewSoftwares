@@ -16,5 +16,27 @@ namespace Budgette
         {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            //Nothing
+        }
+
+        private void UsernameBtn_Click(object sender, EventArgs e)
+        {
+            InfoSave s = new InfoSave(usernameTxt.Text);
+            if (s.accounts.NumOfAccounts() == 0)
+            {
+                s.accounts.AddAccount("Geoffrey", 10);
+                s.SaveUser();
+            }
+
+            displayLbl.Text = s.accounts.ReturnAllAccountInfo();
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

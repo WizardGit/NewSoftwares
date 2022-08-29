@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Security.AccessControl;
 
 namespace Budgette
 {
@@ -23,6 +24,7 @@ namespace Budgette
         {
             userName = pUser;
             dataFile = userName + "AllRecords.save";
+
             if (File.Exists(dataFile))
                 LoadUser();
             else
@@ -41,14 +43,13 @@ namespace Budgette
             FileStream file = File.Create(dataFile);
             bf.Serialize(file, this);
             file.Close();
-            //File.Encrypt(dataFile);
+            
         }
         //Loads the variables in the file at 'username' if possible
         public void LoadUser()
         {
             if (File.Exists(dataFile))
             {
-                //File.Decrypt(dataFile);
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(dataFile, FileMode.Open);
                 InfoSave savedRecords = (InfoSave)bf.Deserialize(file);

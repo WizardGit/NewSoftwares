@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Budgette
 {
     [System.Serializable]
-    class Transactions
+    public class Transactions
     {
         private List<Transaction> transactionsList;
         public Transactions(List<Transaction> pTransactionsList)

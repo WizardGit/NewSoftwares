@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Collections;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using System.Security.AccessControl;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Budgette
 {
@@ -33,7 +26,7 @@ namespace Budgette
                 transactions = new Transactions();
                 userPass = "";
                 SaveUser();
-            }                
+            }
         }
 
         // Saves our class/variables to a local file
@@ -43,7 +36,7 @@ namespace Budgette
             FileStream file = File.Create(dataFile);
             bf.Serialize(file, this);
             file.Close();
-            
+
         }
         //Loads the variables in the file at 'username' if possible
         public void LoadUser()

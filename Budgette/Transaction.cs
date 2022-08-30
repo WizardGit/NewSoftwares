@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Budgette
 {
     [System.Serializable]
-    class Transaction
+    public class Transaction
     {
         private DateTime date;
         private string description = "";
@@ -16,7 +12,7 @@ namespace Budgette
         private string fromAccountStr = "";
         private string toAccountStr = "";
 
-        public Transaction(DateTime pDate, string pDescription, 
+        public Transaction(DateTime pDate, string pDescription,
                            decimal pFromAccountMon, decimal pToAccountMon,
                            string pFromAccountStr, string pToAccountStr)
         {

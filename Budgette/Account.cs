@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Budgette
+﻿namespace Budgette
 {
     [System.Serializable]
-    class Account
+    public class Account
     {
         private decimal balance;
         private string name;

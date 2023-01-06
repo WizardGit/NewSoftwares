@@ -38,6 +38,8 @@ namespace YahtzeeProbabilities
             this.calbut2 = new System.Windows.Forms.Button();
             this.templbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBoxRolls = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // MainLabelOnes
@@ -81,6 +83,7 @@ namespace YahtzeeProbabilities
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "1";
             // 
             // textBox2
             // 
@@ -88,6 +91,7 @@ namespace YahtzeeProbabilities
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 5;
+            this.textBox2.Text = "6";
             // 
             // calbut2
             // 
@@ -117,11 +121,30 @@ namespace YahtzeeProbabilities
             this.label2.TabIndex = 8;
             this.label2.Text = "out of";
             // 
+            // textBoxRolls
+            // 
+            this.textBoxRolls.Location = new System.Drawing.Point(180, 287);
+            this.textBoxRolls.Name = "textBoxRolls";
+            this.textBoxRolls.Size = new System.Drawing.Size(100, 20);
+            this.textBoxRolls.TabIndex = 9;
+            this.textBoxRolls.Text = "1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(76, 287);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Rolls";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 368);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxRolls);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.templbl);
             this.Controls.Add(this.calbut2);
@@ -149,6 +172,8 @@ namespace YahtzeeProbabilities
         private System.Windows.Forms.Button calbut2;
         private System.Windows.Forms.Label templbl;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxRolls;
+        private System.Windows.Forms.Label label1;
     }
 }
 

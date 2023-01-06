@@ -91,7 +91,7 @@ namespace YahtzeeProbabilities
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "6";
+            this.textBox2.Text = "5";
             // 
             // calbut2
             // 
@@ -127,7 +127,7 @@ namespace YahtzeeProbabilities
             this.textBoxRolls.Name = "textBoxRolls";
             this.textBoxRolls.Size = new System.Drawing.Size(100, 20);
             this.textBoxRolls.TabIndex = 9;
-            this.textBoxRolls.Text = "1";
+            this.textBoxRolls.Text = "3";
             // 
             // label1
             // 

@@ -140,7 +140,7 @@ namespace YahtzeeProbabilities
             double numerator = Math.Pow(sidedDice - 1, numDice - selectDice);
 
             return numerator * NumCombin(selectDice, numDice) / denominator;
-            // denominator)
+            // 
         }
 
         /// <summary>
@@ -202,9 +202,12 @@ namespace YahtzeeProbabilities
             int numRolls = 1;
             int.TryParse(textBoxRolls.Text, out numRolls);
             int currRoll = 1;
-            int selectDice = 0;
-            int numDice = 6;
+            int selectDice = 3;
+            int numDice = 5;
             int times = 0;
+
+            int.TryParse(textBox1.Text, out selectDice);
+            int.TryParse(textBox2.Text, out numDice);
 
             double sum = 0;
             for (int i = selectDice; i <= numDice; i++)
@@ -213,6 +216,8 @@ namespace YahtzeeProbabilities
                 ultimateSumProb = 0.0;
                 Recurse(ref times, multProb, ref ultimateSumProb, numRolls, currRoll, i, numDice);
                 //ultimateSumProb = ultimateSumProb / (Math.Pow(6, numDice) * times);
+                //Debug.Write(ultimateSumProb + "\n");
+                // (Math.Pow(Math.Pow(6, numDice), numRolls));
                 sum += ultimateSumProb;
             }            
 
@@ -221,7 +226,7 @@ namespace YahtzeeProbabilities
 
         private void Recurse(ref int times, double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int selectDice, int numDice)
         {
-            Debug.Write(multProb + "\n");
+            //Debug.Write(multProb + "\n");
             if (currRoll == numRolls)
             {
                 hi++;
@@ -233,7 +238,7 @@ namespace YahtzeeProbabilities
             for (int i = selectDice; i >= 0; i--)
             {
                 //times++;
-                Recurse(ref times, multProb * OutOf(i, numDice), ref ultimateSumProb, numRolls, currRoll + 1, selectDice-i, numDice);
+                Recurse(ref times, multProb * OutOf(i, numDice), ref ultimateSumProb, numRolls, currRoll + 1, selectDice-i, numDice-i);
             }
             return;
         }

@@ -93,29 +93,29 @@ namespace YahtzeeProbabilities
         }
 
         // Probability of getting "b" of (a number on a six-sided dice) with "a" dice in 1 roll
-        private float Func2(int a, int b)
+        private double Func2(int a, int b)
         {
             if ((a > b) || (a < 0))
                 throw new Exception("You must request > 0 or < a dice!");
 
-            float prob = 1.0f;
+            double prob = 1.0;
 
             for (int i = 0; i < a; i++)
             {
-                prob *= 1.0f / 6.0f;
+                prob *= 1.0 / 6.0;
             }
             for (int i = b; a < i; i--)
             {
-                prob *= 5.0f / 6.0f;
+                prob *= 5.0 / 6.0;
             }
 
             return prob * NumCombin(a,b);
         }
 
         // Probability of getting at least "b" of (a number on a six-sided dice) with "a" dice in 1 roll
-        private float AtLeastFunc2(int a, int b)
+        private double AtLeastFunc2(int a, int b)
         {
-            float prob = 0.0f;
+            double prob = 0.0;
 
             for (int i = a; i <= b; i++)
             {
@@ -126,9 +126,9 @@ namespace YahtzeeProbabilities
         }
 
         // Probability of getting at mostt "b" of (a number on a six-sided dice) with "a" dice in 1 roll
-        private float AtMostFunc2(int a, int b)
+        private double AtMostFunc2(int a, int b)
         {
-            float prob = 0.0f;
+            double prob = 0.0;
 
             for (int i = a; i >= 0; i--)
             {
@@ -169,7 +169,51 @@ namespace YahtzeeProbabilities
             int b = 0;
             int.TryParse(textBox1.Text, out a);
             int.TryParse(textBox2.Text, out b);
-            templbl.Text = NumCombin(a, b).ToString() + " || " + (AtLeastFunc2(a, b)*100).ToString();
+            templbl.Text = NumCombin(a, b).ToString() + 
+                "\n" + (AtLeastFunc2(a, b)*100).ToString() + 
+                "\n" + (AtMostFunc2(a,b)*100).ToString() +
+                "\n" + (RandFunc()*100).ToString();
+        }
+
+        private double RandFunc()
+        {
+            double multProb = 1.0;
+            double ultimateSumProb = 0.0;
+            int numRolls = 1;
+            int currRollNum = 1;
+            int numDiceToGet = 0;
+            int numDiceWeHave = 5;
+
+            double sum = 0;
+            for (int i = numDiceToGet; i <= numDiceWeHave; i++)
+            {
+                multProb = 1.0;
+                ultimateSumProb = 0.0;
+                Recurse(multProb, ref ultimateSumProb, numRolls, currRollNum, i, numDiceWeHave);
+                sum += ultimateSumProb;
+            }
+            
+
+            return sum;
+        }
+
+        private void Recurse(double multProb, ref double ultimateSumProb, int numRolls, int currRollNum, int numDiceToGet, int numDiceWeHave)
+        {
+            if (currRollNum == numRolls)
+            {
+                double f = Func2(numDiceToGet, numDiceWeHave);
+                multProb = multProb * f;
+                ultimateSumProb = ultimateSumProb + multProb;
+                return;
+            }
+
+            for (int i = numDiceToGet; i >= 0; i--)
+            {
+                //Calculate the probability of this happening
+                double f = Func2(i, numDiceWeHave);
+                Recurse(multProb * f, ref ultimateSumProb, numRolls, currRollNum + 1, numDiceToGet-i, numDiceWeHave);
+            }
+            return;
         }
     }
 }

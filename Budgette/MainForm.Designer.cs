@@ -29,6 +29,7 @@ namespace Budgette
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.usernameTxt = new System.Windows.Forms.TextBox();
             this.UsernameLbl = new System.Windows.Forms.Label();
             this.UsernameBtn = new System.Windows.Forms.Button();
@@ -37,6 +38,18 @@ namespace Budgette
             this.AddAccountBtn = new System.Windows.Forms.Button();
             this.DisplayTransLbl = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
+            this.showTableDataBtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.database1DataSet = new Budgette.Database1DataSet();
+            this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblAcctBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblAcctTableAdapter = new Budgette.Database1DataSetTableAdapters.tblAcctTableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAcctBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // usernameTxt
@@ -113,11 +126,67 @@ namespace Budgette
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
+            // showTableDataBtn
+            // 
+            this.showTableDataBtn.Location = new System.Drawing.Point(565, 264);
+            this.showTableDataBtn.Name = "showTableDataBtn";
+            this.showTableDataBtn.Size = new System.Drawing.Size(132, 69);
+            this.showTableDataBtn.TabIndex = 11;
+            this.showTableDataBtn.Text = "Show Table Data";
+            this.showTableDataBtn.UseVisualStyleBackColor = true;
+            this.showTableDataBtn.Click += new System.EventHandler(this.showTableDataBtn_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.streetDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.tblAcctBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(645, 71);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(265, 154);
+            this.dataGridView1.TabIndex = 12;
+            // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // database1DataSetBindingSource
+            // 
+            this.database1DataSetBindingSource.DataSource = this.database1DataSet;
+            this.database1DataSetBindingSource.Position = 0;
+            // 
+            // tblAcctBindingSource
+            // 
+            this.tblAcctBindingSource.DataMember = "tblAcct";
+            this.tblAcctBindingSource.DataSource = this.database1DataSetBindingSource;
+            // 
+            // tblAcctTableAdapter
+            // 
+            this.tblAcctTableAdapter.ClearBeforeFill = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // streetDataGridViewTextBoxColumn
+            // 
+            this.streetDataGridViewTextBoxColumn.DataPropertyName = "street";
+            this.streetDataGridViewTextBoxColumn.HeaderText = "street";
+            this.streetDataGridViewTextBoxColumn.Name = "streetDataGridViewTextBoxColumn";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 327);
+            this.ClientSize = new System.Drawing.Size(963, 415);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.showTableDataBtn);
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.DisplayTransLbl);
             this.Controls.Add(this.AddAccountBtn);
@@ -129,6 +198,10 @@ namespace Budgette
             this.Name = "MainForm";
             this.Text = "Main Form";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAcctBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +217,14 @@ namespace Budgette
         private System.Windows.Forms.Button AddAccountBtn;
         private System.Windows.Forms.Label DisplayTransLbl;
         private System.Windows.Forms.Button SaveBtn;
+        private System.Windows.Forms.Button showTableDataBtn;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource database1DataSetBindingSource;
+        private Database1DataSet database1DataSet;
+        private System.Windows.Forms.BindingSource tblAcctBindingSource;
+        private Database1DataSetTableAdapters.tblAcctTableAdapter tblAcctTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn streetDataGridViewTextBoxColumn;
     }
 }
 

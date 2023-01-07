@@ -29,10 +29,20 @@ namespace Budgette
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AccountCreateBtn = new System.Windows.Forms.Button();
             this.AccountTxt = new System.Windows.Forms.TextBox();
             this.AccountAddLbl = new System.Windows.Forms.Label();
             this.CancelAccountBtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.database1DataSet = new Budgette.Database1DataSet();
+            this.tblAcctBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblAcctTableAdapter = new Budgette.Database1DataSetTableAdapters.tblAcctTableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAcctBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // AccountCreateBtn
@@ -71,17 +81,61 @@ namespace Budgette
             this.CancelAccountBtn.UseVisualStyleBackColor = true;
             this.CancelAccountBtn.Click += new System.EventHandler(this.CancelAccountBtn_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.streetDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.tblAcctBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(229, 61);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(329, 150);
+            this.dataGridView1.TabIndex = 4;
+            // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblAcctBindingSource
+            // 
+            this.tblAcctBindingSource.DataMember = "tblAcct";
+            this.tblAcctBindingSource.DataSource = this.database1DataSet;
+            // 
+            // tblAcctTableAdapter
+            // 
+            this.tblAcctTableAdapter.ClearBeforeFill = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // streetDataGridViewTextBoxColumn
+            // 
+            this.streetDataGridViewTextBoxColumn.DataPropertyName = "street";
+            this.streetDataGridViewTextBoxColumn.HeaderText = "street";
+            this.streetDataGridViewTextBoxColumn.Name = "streetDataGridViewTextBoxColumn";
+            // 
             // AccountAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 101);
+            this.ClientSize = new System.Drawing.Size(608, 276);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.CancelAccountBtn);
             this.Controls.Add(this.AccountAddLbl);
             this.Controls.Add(this.AccountTxt);
             this.Controls.Add(this.AccountCreateBtn);
             this.Name = "AccountAdd";
             this.Text = "AccountAdd";
+            this.Load += new System.EventHandler(this.AccountAdd_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAcctBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,5 +147,11 @@ namespace Budgette
         private System.Windows.Forms.TextBox AccountTxt;
         private System.Windows.Forms.Label AccountAddLbl;
         private System.Windows.Forms.Button CancelAccountBtn;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private Database1DataSet database1DataSet;
+        private System.Windows.Forms.BindingSource tblAcctBindingSource;
+        private Database1DataSetTableAdapters.tblAcctTableAdapter tblAcctTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn streetDataGridViewTextBoxColumn;
     }
 }

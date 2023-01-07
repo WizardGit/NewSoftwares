@@ -22,5 +22,12 @@ namespace Budgette
         {
             this.Close();
         }
+
+        private void AccountAdd_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'database1DataSet.tblAcct' table. You can move, or remove it, as needed.
+            this.tblAcctTableAdapter.Fill(this.database1DataSet.tblAcct);
+
+        }
     }
 }

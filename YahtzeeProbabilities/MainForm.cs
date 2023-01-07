@@ -15,22 +15,10 @@ namespace YahtzeeProbabilities
 {
     public partial class MainForm : Form
     {
-
-        public int hi = 0;
         public MainForm()
         {
             InitializeComponent();
-        }    
-
-        private void CalculateButton_Click(object sender, EventArgs e)
-        {
-            int p = 0;
-            int.TryParse(OnesTextBox.Text, out p);
-
-            //OnesAnswer.Text = (MultipleRolls(p,6,5,100) * 100).ToString() + " || " + (OneRoll(p, 6) * 100).ToString();
-            //OnesAnswer.Text = NumCombin(4,7).ToString();
-            
-        }
+        }  
 
         //2 out of 2 is (1+0)
         //2 out of 3 is (2+1+0)
@@ -48,72 +36,18 @@ namespace YahtzeeProbabilities
         //4 out of 7 is (4+3+2+1+0) + (3+2+1+0) + (2+1+0) + (1+0) + (3+2+1+0) + (2+1+0) + (1+0) + (2+1+0) + (1+0) + (1+0) = 20 + 10 + 4 + 1 = 35 = (7*6*5)/(3*2*1)
 
 
-        //3 out of 5 is (
-        //2 out of 3 is 3
-        //2 out of 3 is 3
-
-        //How many ways can: selectDice be in numDice
-
-        //(Do recursion for the rolls)
-
-        //selectDice sides on dice: 6 good
-        //numDice number of dice: 5 good
-        //c number of rolls: 1
-        //d number to get: 1 good
-        //e number of d to get: good
-
-        //Probability of getting e of that number in selectDice single roll with 1 roll
-        private float OneRoll(int e, int a = 6, int b=5, int c=1, int d=1)
-        {
-            float prob = 1.0f;
-
-            if (e > b)
-                throw new Exception("You can't get more of selectDice number than dice you are rolling!");
-
-            for (int i = 0; i < e; i++)
-            {
-                prob *=  1.0f / a;
-            }
-            for (int i = e; i < b; i++)
-            {
-                prob *= (a-1.0f) / a;
-            }
-
-            return prob;
-        }
-
-        
-        //Probability of getting e of that number in selectDice single roll with c rolls
-        private float MultipleRolls(int e, int a = 6, int b = 5, int c = 1, int d = 1)
-        {
-            float prob = 1.0f;
-
-            if (e > b)
-                throw new Exception("You can't get more of selectDice number than dice you are rolling!");
-
-            for (int i = 0; i < c; i++)
-            {
-                prob *= (1.0f - OneRoll(e,a,b,c,d));
-            }
-
-            return (1.0f - prob);
-        }
-
-
         //Number of combinations that "selectDice" dice can be selected with selectDice particular number out of "numDice" dice
         // (selectDice out of numDice)
         // i.e. how many ways can there be two dice with selectDice number 1 when you have three dice
-        private int NumCombin(int selectDice, int numDice)
+        private double NumCombin(int selectDice, int numDice)
         {
             if ((numDice < selectDice) || (numDice < 0) || (selectDice < 0))
                 throw new Exception("Exception in function NumCombin");
 
-            int topsum = 1;
-            int bottomsum = 1;
+            double topsum = 1;
+            double bottomsum = 1;
             for (int i = (numDice - selectDice); i > 0; i--)
             {
-                //Debug.Write(topsum + "\n");
-                //Debug.Write(bottomsum + "\n");
                 topsum *= (numDice + 1 - i);
                 bottomsum *= i;
 
@@ -181,68 +115,105 @@ namespace YahtzeeProbabilities
 
         private void calbut2_Click(object sender, EventArgs e)
         {
-            hi = 0;
             int a = 0;
             int b = 0;
             int.TryParse(textBox1.Text, out a);
             int.TryParse(textBox2.Text, out b);
-            templbl.Text = 
-                //NumCombin(a, b).ToString() + 
-                "\n" + (AtLeastOutOf(a, b)*100).ToString() + 
-                "\n" +  (AtMostOutOf(a, b)*100).ToString() +
-                "\n" + (RandFunc()*100).ToString();
-            Debug.Write(hi + "\n");
-            hi = 0;
+            int.TryParse(textBoxRolls.Text, out int currRoll);
+            templbl.Text = UltimateProbAtLeast(3, currRoll, a, b).ToString() + "%";
         }
 
-        private double RandFunc()
+        private double UltimateProbAtLeast(int numRolls, int currRoll, int selectDice, int numDice)
         {
-            double multProb = 1.0;
             double ultimateSumProb = 0.0;
-            int numRolls = 1;
-            int.TryParse(textBoxRolls.Text, out numRolls);
-            int currRoll = 1;
-            int selectDice = 3;
-            int numDice = 5;
-            int times = 0;
-
-            int.TryParse(textBox1.Text, out selectDice);
-            int.TryParse(textBox2.Text, out numDice);
 
             double sum = 0;
             for (int i = selectDice; i <= numDice; i++)
             {
-                multProb = 1.0;
                 ultimateSumProb = 0.0;
-                Recurse(ref times, multProb, ref ultimateSumProb, numRolls, currRoll, i, numDice);
-                //ultimateSumProb = ultimateSumProb / (Math.Pow(6, numDice) * times);
-                //Debug.Write(ultimateSumProb + "\n");
-                // (Math.Pow(Math.Pow(6, numDice), numRolls));
+                Recurse(1.0, ref ultimateSumProb, numRolls, currRoll, i, numDice);
                 sum += ultimateSumProb;
             }            
 
-            return sum;
+            return sum * 100;
         }
 
-        private void Recurse(ref int times, double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int selectDice, int numDice)
+        private void Recurse(double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int selectDice, int numDice)
         {
-            //Debug.Write(multProb + "\n");
             if (currRoll == numRolls)
             {
-                hi++;
-                //times++;
                 ultimateSumProb = ultimateSumProb + (multProb * OutOf(selectDice, numDice));
                 return;
             }
 
             for (int i = selectDice; i >= 0; i--)
             {
-                //times++;
-                Recurse(ref times, multProb * OutOf(i, numDice), ref ultimateSumProb, numRolls, currRoll + 1, selectDice-i, numDice-i);
+                Recurse(multProb * OutOf(i, numDice), ref ultimateSumProb, numRolls, currRoll + 1, selectDice-i, numDice-i);
             }
             return;
         }
 
-        
+        private void tempFunc()
+        {
+
+        }
+
+        private void calcProbsBtn_Click(object sender, EventArgs e)
+        {
+            
+
+            int.TryParse(getSixComboBox.Text, out int getSixes);
+            int.TryParse(getFiveComboBox.Text, out int getFives);
+            int.TryParse(getFourComboBox.Text, out int getFours);
+            int.TryParse(getThreeComboBox.Text, out int getThrees);
+            int.TryParse(getTwoComboBox.Text, out int getTwos);
+            int.TryParse(getOneComboBox.Text, out int getOnes);
+
+            int.TryParse(currRollComboBox.Text, out int currRoll);
+
+            int.TryParse(currRollComboBox.Text, out int tempvar);
+
+
+            int numOnes = 0;
+            int numTwos = 0;
+            int numThrees = 0;
+            int numFours = 0;
+            int numFives = 0;
+            int numSixes = 0;
+            if (tempvar > 1)
+            {
+                int.TryParse(numOneTxtBox.Text, out numOnes);
+                int.TryParse(numTwoTxtBox.Text, out numTwos);
+                int.TryParse(numThreeTxtBox.Text, out numThrees);
+                int.TryParse(numFourTxtBox.Text, out numFours);
+                int.TryParse(numFiveTxtBox.Text, out numFives);
+                int.TryParse(numSixTxtBox.Text, out numSixes);
+            }
+
+            if (getOnes > numOnes)
+                probOneTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getOnes - numOnes, 5 - numOnes), 4).ToString() + "%";
+            else
+                probOneTxtBox.Text = "100%";
+            if (getTwos > numTwos)
+                probTwoTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getTwos - numTwos, 5 - numTwos), 4).ToString() + "%";
+            else
+                probTwoTxtBox.Text = "100%";
+            if (getThrees > numThrees)
+                probThreeTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getThrees - numThrees, 5 - numThrees), 4).ToString() + "%";
+            else
+                probThreeTxtBox.Text = "100%";
+            if (getFours > numFours)
+                probFourTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getFours - numFours, 5 - numFours), 4).ToString() + "%";
+            else
+                probFourTxtBox.Text = "100%";
+            if (getFives > numFives)
+                probFiveTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getFives - numFives, 5 - numFives), 4).ToString() + "%";
+            else
+                probFiveTxtBox.Text = "100%";
+            if (getSixes > numSixes)
+                probSixTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getSixes - numSixes, 5 - numSixes), 4).ToString() + "%";
+            else
+                probSixTxtBox.Text = "100%";
+        }
     }
 }

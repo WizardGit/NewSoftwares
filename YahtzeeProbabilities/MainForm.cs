@@ -180,6 +180,7 @@ namespace YahtzeeProbabilities
             int numFours = 0;
             int numFives = 0;
             int numSixes = 0;
+            
             if (tempvar > 1)
             {
                 int.TryParse(numOneTxtBox.Text, out numOnes);
@@ -188,6 +189,13 @@ namespace YahtzeeProbabilities
                 int.TryParse(numFourTxtBox.Text, out numFours);
                 int.TryParse(numFiveTxtBox.Text, out numFives);
                 int.TryParse(numSixTxtBox.Text, out numSixes);
+            }
+            Debug.Write(numOnes + numTwos + numThrees + numFours + numFives + numSixes);
+            if ((numOnes + numTwos + numThrees + numFours + numFives + numSixes) > 5)
+            {
+
+                warningLbl.Text = "You have more dice listed than dice you actually have! \n Remember, you only have 5 dice!";
+                Debug.Write("halp!");
             }
 
             if (getOnes > numOnes)

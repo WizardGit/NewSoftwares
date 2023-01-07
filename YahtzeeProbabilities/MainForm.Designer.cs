@@ -74,6 +74,7 @@ namespace YahtzeeProbabilities
             this.calcProbsBtn = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.warningLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
@@ -514,12 +515,22 @@ namespace YahtzeeProbabilities
             this.label19.TabIndex = 49;
             this.label19.Text = "Note that at the above we are considering AT LEAST the specified amount";
             // 
+            // warningLbl
+            // 
+            this.warningLbl.AutoSize = true;
+            this.warningLbl.Location = new System.Drawing.Point(323, 106);
+            this.warningLbl.Name = "warningLbl";
+            this.warningLbl.Size = new System.Drawing.Size(97, 13);
+            this.warningLbl.TabIndex = 50;
+            this.warningLbl.Text = "Warning Text Here";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(1108, 608);
+            this.Controls.Add(this.warningLbl);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.calcProbsBtn);
@@ -618,6 +629,7 @@ namespace YahtzeeProbabilities
         private System.Windows.Forms.Button calcProbsBtn;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label warningLbl;
     }
 }
 

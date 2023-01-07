@@ -75,27 +75,44 @@ namespace YahtzeeProbabilities
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.warningLbl = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.prob3KTxtBox = new System.Windows.Forms.TextBox();
+            this.probYTxtBox = new System.Windows.Forms.TextBox();
+            this.probCTxtBox = new System.Windows.Forms.TextBox();
+            this.probLSTxtBox = new System.Windows.Forms.TextBox();
+            this.probSSTxtBox = new System.Windows.Forms.TextBox();
+            this.probFHTxtBox = new System.Windows.Forms.TextBox();
+            this.prob4KTxtBox = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(683, 254);
+            this.textBox1.Location = new System.Drawing.Point(6, 32);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(30, 20);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "1";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(851, 251);
+            this.textBox2.Location = new System.Drawing.Point(82, 32);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(30, 20);
             this.textBox2.TabIndex = 5;
             this.textBox2.Text = "5";
             // 
             // calbut2
             // 
-            this.calbut2.Location = new System.Drawing.Point(978, 251);
+            this.calbut2.Location = new System.Drawing.Point(131, 29);
             this.calbut2.Name = "calbut2";
             this.calbut2.Size = new System.Drawing.Size(75, 23);
             this.calbut2.TabIndex = 6;
@@ -106,7 +123,7 @@ namespace YahtzeeProbabilities
             // templbl
             // 
             this.templbl.AutoSize = true;
-            this.templbl.Location = new System.Drawing.Point(993, 287);
+            this.templbl.Location = new System.Drawing.Point(139, 67);
             this.templbl.Name = "templbl";
             this.templbl.Size = new System.Drawing.Size(24, 13);
             this.templbl.TabIndex = 7;
@@ -115,7 +132,7 @@ namespace YahtzeeProbabilities
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(800, 260);
+            this.label2.Location = new System.Drawing.Point(42, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 8;
@@ -123,16 +140,16 @@ namespace YahtzeeProbabilities
             // 
             // textBoxRolls
             // 
-            this.textBoxRolls.Location = new System.Drawing.Point(851, 319);
+            this.textBoxRolls.Location = new System.Drawing.Point(46, 64);
             this.textBoxRolls.Name = "textBoxRolls";
-            this.textBoxRolls.Size = new System.Drawing.Size(100, 20);
+            this.textBoxRolls.Size = new System.Drawing.Size(30, 20);
             this.textBoxRolls.TabIndex = 9;
             this.textBoxRolls.Text = "3";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(747, 319);
+            this.label1.Location = new System.Drawing.Point(6, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 10;
@@ -509,7 +526,7 @@ namespace YahtzeeProbabilities
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(52, 326);
+            this.label19.Location = new System.Drawing.Point(249, 232);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(361, 13);
             this.label19.TabIndex = 49;
@@ -524,12 +541,179 @@ namespace YahtzeeProbabilities
             this.warningLbl.TabIndex = 50;
             this.warningLbl.Text = "Warning Text Here";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(46, 314);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(58, 13);
+            this.label20.TabIndex = 51;
+            this.label20.Text = "3 of a Kind";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(46, 336);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(58, 13);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "4 of a Kind";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(46, 362);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(57, 13);
+            this.label22.TabIndex = 53;
+            this.label22.Text = "Full House";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(32, 387);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(71, 13);
+            this.label23.TabIndex = 54;
+            this.label23.Text = "Small Straight";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(30, 416);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(73, 13);
+            this.label24.TabIndex = 55;
+            this.label24.Text = "Large Straight";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(52, 440);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(44, 13);
+            this.label25.TabIndex = 56;
+            this.label25.Text = "Chance";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(46, 464);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(46, 13);
+            this.label26.TabIndex = 57;
+            this.label26.Text = "Yahtzee";
+            // 
+            // prob3KTxtBox
+            // 
+            this.prob3KTxtBox.Location = new System.Drawing.Point(146, 307);
+            this.prob3KTxtBox.Name = "prob3KTxtBox";
+            this.prob3KTxtBox.Size = new System.Drawing.Size(60, 20);
+            this.prob3KTxtBox.TabIndex = 58;
+            this.prob3KTxtBox.Text = "0%";
+            this.prob3KTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // probYTxtBox
+            // 
+            this.probYTxtBox.Location = new System.Drawing.Point(146, 461);
+            this.probYTxtBox.Name = "probYTxtBox";
+            this.probYTxtBox.Size = new System.Drawing.Size(60, 20);
+            this.probYTxtBox.TabIndex = 59;
+            this.probYTxtBox.Text = "0%";
+            this.probYTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // probCTxtBox
+            // 
+            this.probCTxtBox.Location = new System.Drawing.Point(146, 437);
+            this.probCTxtBox.Name = "probCTxtBox";
+            this.probCTxtBox.Size = new System.Drawing.Size(60, 20);
+            this.probCTxtBox.TabIndex = 60;
+            this.probCTxtBox.Text = "100%";
+            this.probCTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // probLSTxtBox
+            // 
+            this.probLSTxtBox.Location = new System.Drawing.Point(146, 413);
+            this.probLSTxtBox.Name = "probLSTxtBox";
+            this.probLSTxtBox.Size = new System.Drawing.Size(60, 20);
+            this.probLSTxtBox.TabIndex = 61;
+            this.probLSTxtBox.Text = "0%";
+            this.probLSTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // probSSTxtBox
+            // 
+            this.probSSTxtBox.Location = new System.Drawing.Point(146, 384);
+            this.probSSTxtBox.Name = "probSSTxtBox";
+            this.probSSTxtBox.Size = new System.Drawing.Size(60, 20);
+            this.probSSTxtBox.TabIndex = 62;
+            this.probSSTxtBox.Text = "0%";
+            this.probSSTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // probFHTxtBox
+            // 
+            this.probFHTxtBox.Location = new System.Drawing.Point(146, 359);
+            this.probFHTxtBox.Name = "probFHTxtBox";
+            this.probFHTxtBox.Size = new System.Drawing.Size(60, 20);
+            this.probFHTxtBox.TabIndex = 63;
+            this.probFHTxtBox.Text = "0%";
+            this.probFHTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // prob4KTxtBox
+            // 
+            this.prob4KTxtBox.Location = new System.Drawing.Point(146, 333);
+            this.prob4KTxtBox.Name = "prob4KTxtBox";
+            this.prob4KTxtBox.Size = new System.Drawing.Size(60, 20);
+            this.prob4KTxtBox.TabIndex = 64;
+            this.prob4KTxtBox.Text = "0%";
+            this.prob4KTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.calbut2);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.templbl);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBoxRolls);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(350, 333);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(221, 110);
+            this.groupBox1.TabIndex = 65;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "TestBox";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(77, 291);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(99, 13);
+            this.label27.TabIndex = 66;
+            this.label27.Text = "Locked in at 3 rolls!";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
-            this.ClientSize = new System.Drawing.Size(1108, 608);
+            this.ClientSize = new System.Drawing.Size(655, 547);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.prob4KTxtBox);
+            this.Controls.Add(this.probFHTxtBox);
+            this.Controls.Add(this.probSSTxtBox);
+            this.Controls.Add(this.probLSTxtBox);
+            this.Controls.Add(this.probCTxtBox);
+            this.Controls.Add(this.probYTxtBox);
+            this.Controls.Add(this.prob3KTxtBox);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.warningLbl);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
@@ -569,15 +753,10 @@ namespace YahtzeeProbabilities
             this.Controls.Add(this.numOneTxtBox);
             this.Controls.Add(this.currRollComboBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxRolls);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.templbl);
-            this.Controls.Add(this.calbut2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Name = "MainForm";
             this.Text = "Main Form";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -630,6 +809,22 @@ namespace YahtzeeProbabilities
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label warningLbl;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox prob3KTxtBox;
+        private System.Windows.Forms.TextBox probYTxtBox;
+        private System.Windows.Forms.TextBox probCTxtBox;
+        private System.Windows.Forms.TextBox probLSTxtBox;
+        private System.Windows.Forms.TextBox probSSTxtBox;
+        private System.Windows.Forms.TextBox probFHTxtBox;
+        private System.Windows.Forms.TextBox prob4KTxtBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label27;
     }
 }
 

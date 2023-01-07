@@ -138,6 +138,29 @@ namespace YahtzeeProbabilities
             return sum * 100;
         }
 
+        /// <summary>
+        /// THIS WILL NOT RETURN THE ANSWER * 100!
+        /// </summary>
+        /// <param name="numRolls"></param>
+        /// <param name="currRoll"></param>
+        /// <param name="selectDice"></param>
+        /// <param name="numDice"></param>
+        /// <returns></returns>
+        private double UltimateProbAtMost(int numRolls, int currRoll, int selectDice, int numDice)
+        {
+            double ultimateSumProb = 0.0;
+
+            double sum = 0;
+            for (int i = 0; i <= selectDice; i++)
+            {
+                ultimateSumProb = 0.0;
+                Recurse(1.0, ref ultimateSumProb, numRolls, currRoll, i, numDice);
+                sum += ultimateSumProb;
+            }
+
+            return sum;
+        }
+
         private void Recurse(double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int selectDice, int numDice)
         {
             if (currRoll == numRolls)
@@ -160,66 +183,81 @@ namespace YahtzeeProbabilities
 
         private void calcProbsBtn_Click(object sender, EventArgs e)
         {
+            // Index 0 is empty/doesn't represent anything in both of these arrays
+            int[] selectNum = new int[7];
+            int[] haveNum = new int[] { 0,0,0,0,0,0,0 };
             
-
-            int.TryParse(getSixComboBox.Text, out int getSixes);
-            int.TryParse(getFiveComboBox.Text, out int getFives);
-            int.TryParse(getFourComboBox.Text, out int getFours);
-            int.TryParse(getThreeComboBox.Text, out int getThrees);
-            int.TryParse(getTwoComboBox.Text, out int getTwos);
-            int.TryParse(getOneComboBox.Text, out int getOnes);
+            int.TryParse(getOneComboBox.Text, out selectNum[1]);
+            int.TryParse(getTwoComboBox.Text, out selectNum[2]);
+            int.TryParse(getThreeComboBox.Text, out selectNum[3]);
+            int.TryParse(getFourComboBox.Text, out selectNum[4]);
+            int.TryParse(getFiveComboBox.Text, out selectNum[5]);
+            int.TryParse(getSixComboBox.Text, out selectNum[6]);
 
             int.TryParse(currRollComboBox.Text, out int currRoll);
-
-            int.TryParse(currRollComboBox.Text, out int tempvar);
-
-
-            int numOnes = 0;
-            int numTwos = 0;
-            int numThrees = 0;
-            int numFours = 0;
-            int numFives = 0;
-            int numSixes = 0;
+            int.TryParse(currRollComboBox.Text, out int tempvar);           
             
             if (tempvar > 1)
             {
-                int.TryParse(numOneTxtBox.Text, out numOnes);
-                int.TryParse(numTwoTxtBox.Text, out numTwos);
-                int.TryParse(numThreeTxtBox.Text, out numThrees);
-                int.TryParse(numFourTxtBox.Text, out numFours);
-                int.TryParse(numFiveTxtBox.Text, out numFives);
-                int.TryParse(numSixTxtBox.Text, out numSixes);
+                int.TryParse(numOneTxtBox.Text, out haveNum[1]);
+                int.TryParse(numTwoTxtBox.Text, out haveNum[2]);
+                int.TryParse(numThreeTxtBox.Text, out haveNum[3]);
+                int.TryParse(numFourTxtBox.Text, out haveNum[4]);
+                int.TryParse(numFiveTxtBox.Text, out haveNum[5]);
+                int.TryParse(numSixTxtBox.Text, out haveNum[6]);
             }
 
-            if ((numOnes + numTwos + numThrees + numFours + numFives + numSixes) > 5)
+            int totalDice = 0;
+            for (int i = 1; i < haveNum.Count(); i++)
             {
-                warningLbl.Text = "You have more dice listed than dice you actually have! \n Remember, you only have 5 dice!";
+                totalDice += haveNum[i];
             }
+            if (totalDice > 5)
+                warningLbl.Text = "You have more dice listed than dice you actually have! \n Remember, you only have 5 dice!";
 
-            if (getOnes > numOnes)
-                probOneTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getOnes - numOnes, 5 - numOnes), 4).ToString() + "%";
+            if (selectNum[1] > haveNum[1])
+                probOneTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, selectNum[1] - haveNum[1], 5 - haveNum[1]), 4).ToString() + "%";
             else
                 probOneTxtBox.Text = "100%";
-            if (getTwos > numTwos)
-                probTwoTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getTwos - numTwos, 5 - numTwos), 4).ToString() + "%";
+            if (selectNum[2] > haveNum[2])
+                probTwoTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, selectNum[2] - haveNum[2], 5 - haveNum[2]), 4).ToString() + "%";
             else
                 probTwoTxtBox.Text = "100%";
-            if (getThrees > numThrees)
-                probThreeTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getThrees - numThrees, 5 - numThrees), 4).ToString() + "%";
+            if (selectNum[3] > haveNum[3])
+                probThreeTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, selectNum[3] - haveNum[3], 5 - haveNum[3]), 4).ToString() + "%";
             else
                 probThreeTxtBox.Text = "100%";
-            if (getFours > numFours)
-                probFourTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getFours - numFours, 5 - numFours), 4).ToString() + "%";
+            if (selectNum[4] > haveNum[4])
+                probFourTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, selectNum[4] - haveNum[4], 5 - haveNum[4]), 4).ToString() + "%";
             else
                 probFourTxtBox.Text = "100%";
-            if (getFives > numFives)
-                probFiveTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getFives - numFives, 5 - numFives), 4).ToString() + "%";
+            if (selectNum[5] > haveNum[5])
+                probFiveTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, selectNum[5] - haveNum[5], 5 - haveNum[5]), 4).ToString() + "%";
             else
                 probFiveTxtBox.Text = "100%";
-            if (getSixes > numSixes)
-                probSixTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, getSixes - numSixes, 5 - numSixes), 4).ToString() + "%";
+            if (selectNum[6] > haveNum[6])
+                probSixTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, selectNum[6] - haveNum[6], 5 - haveNum[6]), 4).ToString() + "%";
             else
                 probSixTxtBox.Text = "100%";
+            probCTxtBox.Text = "100%";
+
+            //The liklihood that all six numbers will NOT be rolled to get three/four is
+            //The likelihood that one of them won't be rolled to get three/four multipled by itself 6 times (since six numbers)
+            // 1- that answer is then the likelihood one of them WILL be rolled to get three/four - multiply this by 100 since the 
+            //ultimate function does not and round to four decimal places
+            prob3KTxtBox.Text = Math.Round(100 * (1.0 - Math.Pow(UltimateProbAtMost(3, currRoll, 2, 5), 6)), 4).ToString() + "%";
+            prob4KTxtBox.Text = Math.Round(100 * (1.0 - Math.Pow(UltimateProbAtMost(3, currRoll, 3, 5), 6)), 4).ToString() + "%";
+
+            //Same sort of reasoning as above
+            probYTxtBox.Text = Math.Round(100 * (1.0 - Math.Pow(UltimateProbAtMost(3, currRoll, 4, 5), 6)), 4).ToString() + "%";
+
+
+            //Locked on three rolls - need to be modified for less
+            // Unsure if these are right!            
+            probFHTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, 5, 5) * 25, 4).ToString() + "%";  
+            probSSTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, 4, 5), 4).ToString() + "%";
+            probLSTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, 5, 5), 4).ToString() + "%";
+            
         }
 
         // I think getting small straight is just chance of getting 3 of a number * 3

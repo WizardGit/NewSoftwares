@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FFE34B7-CE75-4998-B23A-65230226C122}</ProjectGuid>
+    <ProjectGuid>{8132C6BA-9C7D-46A1-9B37-AC51A44AE09D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Budgette</RootNamespace>
     <AssemblyName>Budgette</AssemblyName>
@@ -63,32 +63,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="AccountAdd.cs">
+    <Compile Include="AddUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AccountAdd.Designer.cs">
-      <DependentUpon>AccountAdd.cs</DependentUpon>
+    <Compile Include="AddUserForm.Designer.cs">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Accounts.cs" />
-    <Compile Include="Database1DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database1DataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="InfoSave.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainDatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="Transactions.cs" />
-    <EmbeddedResource Include="AccountAdd.resx">
-      <DependentUpon>AccountAdd.cs</DependentUpon>
+    <EmbeddedResource Include="AddUserForm.resx">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -102,16 +97,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Database1DataSet.xsc">
-      <DependentUpon>Database1DataSet.xsd</DependentUpon>
+    <None Include="MainDatabaseDataSet.xsc">
+      <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Database1DataSet.xsd">
+    <None Include="MainDatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Database1DataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>MainDatabaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Database1DataSet.xss">
-      <DependentUpon>Database1DataSet.xsd</DependentUpon>
+    <None Include="MainDatabaseDataSet.xss">
+      <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -127,12 +122,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database1.mdf">
+    <Content Include="MainDatabase.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Database1_log.ldf">
+    <Content Include="MainDatabase_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>Database1.mdf</DependentUpon>
+      <DependentUpon>MainDatabase.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

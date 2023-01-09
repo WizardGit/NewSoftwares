@@ -68,13 +68,155 @@ namespace YahtzeeProbabilities
         private double OutOf(int selectDice, int numDice, int sidedDice = 6)
         {
             if ((numDice < selectDice) || (numDice < 0) || (selectDice < 0) || (sidedDice < 0))
+                throw new Exception("Exception in function OutOf");            
+            
+            double numerator = Math.Pow(sidedDice - 1, numDice - selectDice) * NumCombin(selectDice, numDice);
+            double denominator = Math.Pow(sidedDice, numDice);
+
+            return numerator / denominator;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="selectDice"></param>
+        /// <param name="numDice"></param>
+        /// <param name="sidedDice"></param>
+        /// <returns>Probability of getting unique selectDice out of NumDice</returns>
+        /// <exception cref="Exception"></exception>
+        private double UniqueOutOf(int selectDice, int numDice, int sidedDice = 6)
+        {
+            if ((numDice < selectDice) || (numDice < 0) || (selectDice < 0) || (sidedDice < 0))
                 throw new Exception("Exception in function OutOf");
+
+            double numerator = 1.0;
+            for (int i = (sidedDice - 5 + selectDice); i > 1; i--)
+            {
+                numerator *= i;
+            }
+            numerator *= Math.Pow(selectDice, (numDice - selectDice));
             
             double denominator = Math.Pow(sidedDice, numDice);
-            double numerator = Math.Pow(sidedDice - 1, numDice - selectDice);
 
-            return numerator * NumCombin(selectDice, numDice) / denominator;
-            // 
+            Debug.Write("Numerator: " + numerator.ToString() + " Denominator: " + denominator.ToString() + "\n");
+
+            return numerator / denominator;
+        }
+
+        // Make more powerful later
+        private double NumsInRow(int inARow, int amountInSet = 5)
+        {
+            int[] numbers = { 1, 2, 3, 4, 5, 6 };
+            int num = 6;
+
+            double maxSets = NumCombin(amountInSet, 6);
+
+            if (inARow <= (num / (num - amountInSet + 1)))
+            {
+                return maxSets;
+            }
+            else if (inARow == 5)
+            {
+                return 2;
+            }
+            else if (inARow == 4)
+            {
+                return 3;
+            }
+
+            return maxSets;
+        }
+
+        private double Factorial(int num)
+        {
+            double sum = 1;
+            for (int i = num; i > 0; i--)
+            {
+                sum *= i;
+            }
+            return sum;
+        }
+
+        private double ExperimentalOutOf(int selectDice, int numDice, int sidedDice = 6) 
+        { 
+            double numerator = 1.0;
+            double denominator = 1.0;
+
+            //Deal with Sets
+            double sets = NumsInRow(selectDice);
+            //Deal with repeated elemnts
+            double ele = NumCombin(numDice - selectDice + 1, numDice);
+            //Deal with distinct elements
+            double dist = Factorial(selectDice - 1);
+            double multisets = 0;
+
+            if (selectDice == 5)
+                multisets = 0;
+            else if (selectDice == 4)
+                multisets = 5 + 4 + 5 - 2;
+            else if (selectDice == 3)
+                multisets = Math.Pow(5, 2) + Math.Pow(4,2) + Math.Pow(4, 2) + Math.Pow(5, 2) - 2;  
+            else if (selectDice == 2)
+                multisets = Math.Pow(4, 3) + Math.Pow(3, 3) + Math.Pow(4, 3) + Math.Pow(3, 3) + Math.Pow(4, 3) - 2;
+            else if (selectDice == 1)     
+                multisets = 1 * 6;
+
+            numerator = (2 * Factorial(numDice)) + (ele * dist * multisets);
+            denominator = Math.Pow(sidedDice, numDice);
+
+
+            Debug.Write(numerator + " " + sets + " " + ele + " " + dist + " " + multisets + "\n");
+
+            return numerator / denominator * 100;
+        }
+
+        private void UniqueRecurse(double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int selectDice, int numDice)
+        {
+            if (currRoll == numRolls)
+            {
+                ultimateSumProb = ultimateSumProb + (multProb * UniqueOutOf(selectDice, numDice));
+                return;
+            }
+
+            for (int i = selectDice; i >= 0; i--)
+            {
+                UniqueRecurse(multProb * UniqueOutOf(i, numDice), ref ultimateSumProb, numRolls, currRoll + 1, selectDice - i, numDice - i);
+            }
+            return;
+        }
+
+        private double UniqueUltimateProbAtLeast(int numRolls, int currRoll, int selectDice, int numDice)
+        {
+            double ultimateSumProb = 0.0;
+
+            double sum = 0;
+            for (int i = selectDice; i <= numDice; i++)
+            {
+                ultimateSumProb = 0.0;
+                UniqueRecurse(1.0, ref ultimateSumProb, numRolls, currRoll, i, numDice);
+
+                
+                sum += ultimateSumProb;
+            }
+
+            return sum * 100;
+        }
+
+        private double UniqueUltimateProbAtMost(int numRolls, int currRoll, int selectDice, int numDice)
+        {
+            double ultimateSumProb = 0.0;
+
+            double sum = 0;
+            for (int i = 0; i <= selectDice; i++)
+            {
+                ultimateSumProb = 0.0;
+                UniqueRecurse(1.0, ref ultimateSumProb, numRolls, currRoll, i, numDice);
+
+                Debug.Write(ultimateSumProb + "\n");
+                sum += ultimateSumProb;
+            }
+
+            return sum;
         }
 
         /// <summary>
@@ -120,7 +262,7 @@ namespace YahtzeeProbabilities
             int.TryParse(textBox1.Text, out a);
             int.TryParse(textBox2.Text, out b);
             int.TryParse(textBoxRolls.Text, out int currRoll);
-            templbl.Text = UltimateProbAtLeast(3, currRoll, a, b).ToString() + "%";
+            templbl.Text = NumCombin(a,b).ToString() + "%";
         }
 
         private double UltimateProbAtLeast(int numRolls, int currRoll, int selectDice, int numDice)
@@ -174,11 +316,6 @@ namespace YahtzeeProbabilities
                 Recurse(multProb * OutOf(i, numDice), ref ultimateSumProb, numRolls, currRoll + 1, selectDice-i, numDice-i);
             }
             return;
-        }
-
-        private void tempFunc()
-        {
-
         }
 
         private void calcProbsBtn_Click(object sender, EventArgs e)
@@ -241,6 +378,7 @@ namespace YahtzeeProbabilities
                 probSixTxtBox.Text = "100%";
             probCTxtBox.Text = "100%";
 
+            //Many of these are wrong!
             //The liklihood that all six numbers will NOT be rolled to get three/four is
             //The likelihood that one of them won't be rolled to get three/four multipled by itself 6 times (since six numbers)
             // 1- that answer is then the likelihood one of them WILL be rolled to get three/four - multiply this by 100 since the 
@@ -253,15 +391,9 @@ namespace YahtzeeProbabilities
 
 
             //Locked on three rolls - need to be modified for less
-            // Unsure if these are right!            
-            probFHTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, 5, 5) * 25, 4).ToString() + "%";  
-            probSSTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, 4, 5), 4).ToString() + "%";
-            probLSTxtBox.Text = Math.Round(UltimateProbAtLeast(3, currRoll, 5, 5), 4).ToString() + "%";
-            
+            probFHTxtBox.Text = Math.Round((100 * 300 / Math.Pow(6,5)),4).ToString() + "%";
+            probSSTxtBox.Text = Math.Round(ExperimentalOutOf(4, 5),4).ToString() + "%";
+            probLSTxtBox.Text = Math.Round(ExperimentalOutOf(5, 5), 4).ToString() + "%";
         }
-
-        // I think getting small straight is just chance of getting 3 of a number * 3
-        // I think large straight is just getting 4 of a number * 2
-        // I think full house is just getting 5 * 25
     }
 }

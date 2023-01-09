@@ -91,6 +91,8 @@ namespace YahtzeeProbabilities
             this.prob4KTxtBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -175,7 +177,7 @@ namespace YahtzeeProbabilities
             this.currRollComboBox.Name = "currRollComboBox";
             this.currRollComboBox.Size = new System.Drawing.Size(30, 21);
             this.currRollComboBox.TabIndex = 12;
-            this.currRollComboBox.Text = "1";
+            this.currRollComboBox.Text = "3";
             // 
             // numOneTxtBox
             // 
@@ -253,7 +255,7 @@ namespace YahtzeeProbabilities
             this.numFiveTxtBox.Name = "numFiveTxtBox";
             this.numFiveTxtBox.Size = new System.Drawing.Size(30, 20);
             this.numFiveTxtBox.TabIndex = 22;
-            this.numFiveTxtBox.Text = "1";
+            this.numFiveTxtBox.Text = "0";
             // 
             // numThreeTxtBox
             // 
@@ -686,11 +688,29 @@ namespace YahtzeeProbabilities
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(77, 291);
+            this.label27.Location = new System.Drawing.Point(212, 384);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(99, 13);
             this.label27.TabIndex = 66;
             this.label27.Text = "Locked in at 3 rolls!";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(212, 416);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(99, 13);
+            this.label28.TabIndex = 67;
+            this.label28.Text = "Locked in at 3 rolls!";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(217, 359);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(99, 13);
+            this.label29.TabIndex = 68;
+            this.label29.Text = "Locked in at 3 rolls!";
             // 
             // MainForm
             // 
@@ -698,6 +718,8 @@ namespace YahtzeeProbabilities
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(655, 547);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.prob4KTxtBox);
@@ -825,6 +847,8 @@ namespace YahtzeeProbabilities
         private System.Windows.Forms.TextBox prob4KTxtBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
     }
 }
 

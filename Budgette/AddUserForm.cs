@@ -30,7 +30,6 @@ namespace Budgette
         {
             // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblUser' table. You can move, or remove it, as needed.
             this.tblUserTableAdapter.Fill(this.mainDatabaseDataSet.tblUser);
-
         }
 
         private void createUserBtn_Click(object sender, EventArgs e)

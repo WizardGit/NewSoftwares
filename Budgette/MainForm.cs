@@ -21,7 +21,17 @@ namespace Budgette
         {
             AddUserForm addUserform = new AddUserForm();
             addUserform.Show();
+        }
 
+        private void addBankAccountBtn_Click(object sender, EventArgs e)
+        {
+            AddAccountForm addAccount = new AddAccountForm();
+            addAccount.Show();
+        }
+
+        private void quitBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

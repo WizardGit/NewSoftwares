@@ -33,5 +33,17 @@ namespace Budgette
         {
             Close();
         }
+
+        private void addBucketBtn_Click(object sender, EventArgs e)
+        {
+            AddBucketForm addBucket = new AddBucketForm();
+            addBucket.Show();
+        }
+
+        private void addTransactionBtn_Click(object sender, EventArgs e)
+        {
+            AddTransactionForm addTransaction = new AddTransactionForm();
+            addTransaction.Show();
+        }
     }
 }

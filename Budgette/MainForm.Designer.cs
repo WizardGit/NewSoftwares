@@ -31,6 +31,8 @@
             this.addUserBtn = new System.Windows.Forms.Button();
             this.addBankAccountBtn = new System.Windows.Forms.Button();
             this.quitBtn = new System.Windows.Forms.Button();
+            this.addBucketBtn = new System.Windows.Forms.Button();
+            this.addTransactionBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addUserBtn
@@ -63,11 +65,33 @@
             this.quitBtn.UseVisualStyleBackColor = true;
             this.quitBtn.Click += new System.EventHandler(this.quitBtn_Click);
             // 
+            // addBucketBtn
+            // 
+            this.addBucketBtn.Location = new System.Drawing.Point(129, 12);
+            this.addBucketBtn.Name = "addBucketBtn";
+            this.addBucketBtn.Size = new System.Drawing.Size(111, 23);
+            this.addBucketBtn.TabIndex = 3;
+            this.addBucketBtn.Text = "Add Bucket";
+            this.addBucketBtn.UseVisualStyleBackColor = true;
+            this.addBucketBtn.Click += new System.EventHandler(this.addBucketBtn_Click);
+            // 
+            // addTransactionBtn
+            // 
+            this.addTransactionBtn.Location = new System.Drawing.Point(129, 41);
+            this.addTransactionBtn.Name = "addTransactionBtn";
+            this.addTransactionBtn.Size = new System.Drawing.Size(111, 23);
+            this.addTransactionBtn.TabIndex = 4;
+            this.addTransactionBtn.Text = "Add Transaction";
+            this.addTransactionBtn.UseVisualStyleBackColor = true;
+            this.addTransactionBtn.Click += new System.EventHandler(this.addTransactionBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.addTransactionBtn);
+            this.Controls.Add(this.addBucketBtn);
             this.Controls.Add(this.quitBtn);
             this.Controls.Add(this.addBankAccountBtn);
             this.Controls.Add(this.addUserBtn);
@@ -82,6 +106,8 @@
         private System.Windows.Forms.Button addUserBtn;
         private System.Windows.Forms.Button addBankAccountBtn;
         private System.Windows.Forms.Button quitBtn;
+        private System.Windows.Forms.Button addBucketBtn;
+        private System.Windows.Forms.Button addTransactionBtn;
     }
 }
 

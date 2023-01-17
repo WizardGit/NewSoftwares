@@ -30,26 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tblAccountDataGridView = new System.Windows.Forms.DataGridView();
-            this.tblAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainDatabaseDataSet = new Budgette.MainDatabaseDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.Bank = new System.Windows.Forms.Label();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.nameTxtBox = new System.Windows.Forms.TextBox();
-            this.bankTxtBox = new System.Windows.Forms.TextBox();
             this.createAccountBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.balanceTxtBox = new System.Windows.Forms.TextBox();
-            this.tblAccountBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.tblAccountTableAdapter = new Budgette.MainDatabaseDataSetTableAdapters.tblAccountTableAdapter();
+            this.bankComboBox = new System.Windows.Forms.ComboBox();
             this.accountIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblAccountBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDatabaseDataSet = new Budgette.MainDatabaseDataSet();
+            this.tblAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblAccountTableAdapter = new Budgette.MainDatabaseDataSetTableAdapters.tblAccountTableAdapter();
+            this.tblAccountBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // tblAccountDataGridView
@@ -66,16 +68,6 @@
             this.tblAccountDataGridView.Name = "tblAccountDataGridView";
             this.tblAccountDataGridView.Size = new System.Drawing.Size(383, 150);
             this.tblAccountDataGridView.TabIndex = 13;
-            // 
-            // tblAccountBindingSource
-            // 
-            this.tblAccountBindingSource.DataMember = "tblAccount";
-            this.tblAccountBindingSource.DataSource = this.mainDatabaseDataSet;
-            // 
-            // mainDatabaseDataSet
-            // 
-            this.mainDatabaseDataSet.DataSetName = "MainDatabaseDataSet";
-            this.mainDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -112,13 +104,6 @@
             this.nameTxtBox.Size = new System.Drawing.Size(100, 20);
             this.nameTxtBox.TabIndex = 9;
             // 
-            // bankTxtBox
-            // 
-            this.bankTxtBox.Location = new System.Drawing.Point(50, 2);
-            this.bankTxtBox.Name = "bankTxtBox";
-            this.bankTxtBox.Size = new System.Drawing.Size(100, 20);
-            this.bankTxtBox.TabIndex = 8;
-            // 
             // createAccountBtn
             // 
             this.createAccountBtn.Location = new System.Drawing.Point(70, 124);
@@ -145,14 +130,13 @@
             this.balanceTxtBox.Size = new System.Drawing.Size(100, 20);
             this.balanceTxtBox.TabIndex = 15;
             // 
-            // tblAccountBindingSource1
+            // bankComboBox
             // 
-            this.tblAccountBindingSource1.DataMember = "tblAccount";
-            this.tblAccountBindingSource1.DataSource = this.mainDatabaseDataSet;
-            // 
-            // tblAccountTableAdapter
-            // 
-            this.tblAccountTableAdapter.ClearBeforeFill = true;
+            this.bankComboBox.FormattingEnabled = true;
+            this.bankComboBox.Location = new System.Drawing.Point(64, 0);
+            this.bankComboBox.Name = "bankComboBox";
+            this.bankComboBox.Size = new System.Drawing.Size(121, 21);
+            this.bankComboBox.TabIndex = 16;
             // 
             // accountIdDataGridViewTextBoxColumn
             // 
@@ -178,11 +162,36 @@
             this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
             this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
             // 
-            // AddAccount
+            // tblAccountBindingSource1
+            // 
+            this.tblAccountBindingSource1.DataMember = "tblAccount";
+            this.tblAccountBindingSource1.DataSource = this.mainDatabaseDataSet;
+            // 
+            // mainDatabaseDataSet
+            // 
+            this.mainDatabaseDataSet.DataSetName = "MainDatabaseDataSet";
+            this.mainDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblAccountBindingSource
+            // 
+            this.tblAccountBindingSource.DataMember = "tblAccount";
+            this.tblAccountBindingSource.DataSource = this.mainDatabaseDataSet;
+            // 
+            // tblAccountTableAdapter
+            // 
+            this.tblAccountTableAdapter.ClearBeforeFill = true;
+            // 
+            // tblAccountBindingSource2
+            // 
+            this.tblAccountBindingSource2.DataMember = "tblAccount";
+            this.tblAccountBindingSource2.DataSource = this.mainDatabaseDataSet;
+            // 
+            // AddAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(611, 270);
+            this.Controls.Add(this.bankComboBox);
             this.Controls.Add(this.balanceTxtBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tblAccountDataGridView);
@@ -190,15 +199,15 @@
             this.Controls.Add(this.Bank);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.nameTxtBox);
-            this.Controls.Add(this.bankTxtBox);
             this.Controls.Add(this.createAccountBtn);
-            this.Name = "AddAccount";
+            this.Name = "AddAccountForm";
             this.Text = "AddAccount";
             this.Load += new System.EventHandler(this.AddAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,7 +220,6 @@
         private System.Windows.Forms.Label Bank;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.TextBox nameTxtBox;
-        private System.Windows.Forms.TextBox bankTxtBox;
         private System.Windows.Forms.Button createAccountBtn;
         private MainDatabaseDataSet mainDatabaseDataSet;
         private System.Windows.Forms.BindingSource tblAccountBindingSource;
@@ -223,5 +231,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bankDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn balanceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox bankComboBox;
+        private System.Windows.Forms.BindingSource tblAccountBindingSource2;
     }
 }

@@ -33,6 +33,13 @@
             this.quitBtn = new System.Windows.Forms.Button();
             this.addBucketBtn = new System.Windows.Forms.Button();
             this.addTransactionBtn = new System.Windows.Forms.Button();
+            this.usernameTxtBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.passwordTxtBox = new System.Windows.Forms.TextBox();
+            this.loginBtn = new System.Windows.Forms.Button();
+            this.userLbl = new System.Windows.Forms.Label();
+            this.addBankBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addUserBtn
@@ -85,11 +92,79 @@
             this.addTransactionBtn.UseVisualStyleBackColor = true;
             this.addTransactionBtn.Click += new System.EventHandler(this.addTransactionBtn_Click);
             // 
+            // usernameTxtBox
+            // 
+            this.usernameTxtBox.Location = new System.Drawing.Point(396, 15);
+            this.usernameTxtBox.Name = "usernameTxtBox";
+            this.usernameTxtBox.Size = new System.Drawing.Size(100, 20);
+            this.usernameTxtBox.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(325, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Username";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(325, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Password";
+            // 
+            // passwordTxtBox
+            // 
+            this.passwordTxtBox.Location = new System.Drawing.Point(396, 55);
+            this.passwordTxtBox.Name = "passwordTxtBox";
+            this.passwordTxtBox.Size = new System.Drawing.Size(100, 20);
+            this.passwordTxtBox.TabIndex = 8;
+            // 
+            // loginBtn
+            // 
+            this.loginBtn.Location = new System.Drawing.Point(386, 99);
+            this.loginBtn.Name = "loginBtn";
+            this.loginBtn.Size = new System.Drawing.Size(110, 23);
+            this.loginBtn.TabIndex = 9;
+            this.loginBtn.Text = "Log In";
+            this.loginBtn.UseVisualStyleBackColor = true;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            // 
+            // userLbl
+            // 
+            this.userLbl.AutoSize = true;
+            this.userLbl.Location = new System.Drawing.Point(393, 157);
+            this.userLbl.Name = "userLbl";
+            this.userLbl.Size = new System.Drawing.Size(45, 13);
+            this.userLbl.TabIndex = 10;
+            this.userLbl.Text = "User is: ";
+            // 
+            // addBankBtn
+            // 
+            this.addBankBtn.Location = new System.Drawing.Point(129, 70);
+            this.addBankBtn.Name = "addBankBtn";
+            this.addBankBtn.Size = new System.Drawing.Size(111, 23);
+            this.addBankBtn.TabIndex = 11;
+            this.addBankBtn.Text = "Add Bank";
+            this.addBankBtn.UseVisualStyleBackColor = true;
+            this.addBankBtn.Click += new System.EventHandler(this.addBankBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(629, 250);
+            this.Controls.Add(this.addBankBtn);
+            this.Controls.Add(this.userLbl);
+            this.Controls.Add(this.loginBtn);
+            this.Controls.Add(this.passwordTxtBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.usernameTxtBox);
             this.Controls.Add(this.addTransactionBtn);
             this.Controls.Add(this.addBucketBtn);
             this.Controls.Add(this.quitBtn);
@@ -98,6 +173,7 @@
             this.Name = "MainForm";
             this.Text = "Main Form";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -108,6 +184,13 @@
         private System.Windows.Forms.Button quitBtn;
         private System.Windows.Forms.Button addBucketBtn;
         private System.Windows.Forms.Button addTransactionBtn;
+        private System.Windows.Forms.TextBox usernameTxtBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox passwordTxtBox;
+        private System.Windows.Forms.Button loginBtn;
+        private System.Windows.Forms.Label userLbl;
+        private System.Windows.Forms.Button addBankBtn;
     }
 }
 

@@ -6,17 +6,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Budgette
 {
-    public partial class AddUserForm : Form
+    public partial class AddBankForm : Form
     {
-        public AddUserForm()
+        public AddBankForm()
         {
             InitializeComponent();
         }
@@ -26,37 +24,36 @@ namespace Budgette
             this.Close();
         }
 
-        private void AddUserForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblUser' table. You can move, or remove it, as needed.
-            this.tblUserTableAdapter.Fill(this.mainDatabaseDataSet.tblUser);
-        }
-
-        private void createUserBtn_Click(object sender, EventArgs e)
+        private void createBankBtn_Click(object sender, EventArgs e)
         {
             List<string> idNumbers = new List<string>();
             idNumbers.Add("1000");
 
-
-
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
 
-            SqlCommand command = new SqlCommand("Select UserId from tblUser order by UserId desc", con);
+            SqlCommand command = new SqlCommand("Select BankId from tblBank order by BankId desc", con);
             // int result = command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
-                    idNumbers.Add(string.Format("{0}", reader["UserId"]));
+                    idNumbers.Add(string.Format("{0}", reader["BankId"]));
             }
 
 
-            int.TryParse(idNumbers[idNumbers.Count - 1], out int userId);
-            userId++;
+            int.TryParse(idNumbers[idNumbers.Count - 1], out int BankId);
+            BankId++;
 
-            SqlCommand cmd = new SqlCommand("insert into tblUser values('" + userId + "', '" + usernameTxtBox.Text + "','" + passwordTxtBox.Text + "')", con);
+            SqlCommand cmd = new SqlCommand("insert into tblBank values('" + BankId + "', '" + bankTxtBox.Text + "','" + ImpInfo.userId + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
+        }
+
+        private void AddBankForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBank' table. You can move, or remove it, as needed.
+            this.tblBankTableAdapter.Fill(this.mainDatabaseDataSet.tblBank);
+
         }
     }
 }

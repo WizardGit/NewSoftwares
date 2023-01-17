@@ -23,6 +23,20 @@ namespace Budgette
         {
             // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblAccount' table. You can move, or remove it, as needed.
             this.tblAccountTableAdapter.Fill(this.mainDatabaseDataSet.tblAccount);
+
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand command = new SqlCommand("Select Name from tblBank where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                    bankComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+            }
+
+
+            con.Close();
         }
 
         private void createAccountBtn_Click(object sender, EventArgs e)
@@ -47,7 +61,7 @@ namespace Budgette
 
             decimal.TryParse(balanceTxtBox.Text, out decimal balance);
 
-            SqlCommand cmd = new SqlCommand("insert into tblAccount values('" + accountId + "', '" + bankTxtBox.Text + "','" + nameTxtBox.Text + "', '" + balance + "')", con);
+            SqlCommand cmd = new SqlCommand("insert into tblAccount values('" + accountId + "', '" + bankComboBox.Text + "','" + nameTxtBox.Text + "', '" + balance + "', '" + ImpInfo.userId + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
 

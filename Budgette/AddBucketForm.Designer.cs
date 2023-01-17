@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tblBucketDataGridView = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -35,12 +36,28 @@
             this.balanceTxtBox = new System.Windows.Forms.TextBox();
             this.nameTxtBox = new System.Windows.Forms.TextBox();
             this.createBucketBtn = new System.Windows.Forms.Button();
+            this.mainDatabaseDataSet = new Budgette.MainDatabaseDataSet();
+            this.tblBucketBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblBucketTableAdapter = new Budgette.MainDatabaseDataSetTableAdapters.tblBucketTableAdapter();
+            this.bucketIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblBucketDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblBucketBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tblBucketDataGridView
             // 
+            this.tblBucketDataGridView.AutoGenerateColumns = false;
             this.tblBucketDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblBucketDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bucketIdDataGridViewTextBoxColumn,
+            this.balanceDataGridViewTextBoxColumn,
+            this.userIdDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn});
+            this.tblBucketDataGridView.DataSource = this.tblBucketBindingSource;
             this.tblBucketDataGridView.Location = new System.Drawing.Point(235, 4);
             this.tblBucketDataGridView.Name = "tblBucketDataGridView";
             this.tblBucketDataGridView.Size = new System.Drawing.Size(383, 150);
@@ -98,6 +115,44 @@
             this.createBucketBtn.UseVisualStyleBackColor = true;
             this.createBucketBtn.Click += new System.EventHandler(this.createBucketBtn_Click);
             // 
+            // mainDatabaseDataSet
+            // 
+            this.mainDatabaseDataSet.DataSetName = "MainDatabaseDataSet";
+            this.mainDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblBucketBindingSource
+            // 
+            this.tblBucketBindingSource.DataMember = "tblBucket";
+            this.tblBucketBindingSource.DataSource = this.mainDatabaseDataSet;
+            // 
+            // tblBucketTableAdapter
+            // 
+            this.tblBucketTableAdapter.ClearBeforeFill = true;
+            // 
+            // bucketIdDataGridViewTextBoxColumn
+            // 
+            this.bucketIdDataGridViewTextBoxColumn.DataPropertyName = "BucketId";
+            this.bucketIdDataGridViewTextBoxColumn.HeaderText = "BucketId";
+            this.bucketIdDataGridViewTextBoxColumn.Name = "bucketIdDataGridViewTextBoxColumn";
+            // 
+            // balanceDataGridViewTextBoxColumn
+            // 
+            this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
+            this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
+            this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
+            // 
+            // userIdDataGridViewTextBoxColumn
+            // 
+            this.userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
+            this.userIdDataGridViewTextBoxColumn.HeaderText = "UserId";
+            this.userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
             // AddBucketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,7 +167,10 @@
             this.Controls.Add(this.createBucketBtn);
             this.Name = "AddBucketForm";
             this.Text = "AddBucketForm";
+            this.Load += new System.EventHandler(this.AddBucketForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblBucketDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblBucketBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,5 +185,12 @@
         private System.Windows.Forms.TextBox balanceTxtBox;
         private System.Windows.Forms.TextBox nameTxtBox;
         private System.Windows.Forms.Button createBucketBtn;
+        private MainDatabaseDataSet mainDatabaseDataSet;
+        private System.Windows.Forms.BindingSource tblBucketBindingSource;
+        private MainDatabaseDataSetTableAdapters.tblBucketTableAdapter tblBucketTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bucketIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn balanceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }
 }

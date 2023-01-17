@@ -41,7 +41,7 @@ namespace Budgette
 
             decimal.TryParse(balanceTxtBox.Text, out decimal balance);
 
-            SqlCommand cmd = new SqlCommand("insert into tblAccount values('" + bucketId + "', '" + nameTxtBox.Text + "', '" + balance + "')", con);
+            SqlCommand cmd = new SqlCommand("insert into tblBucket values('" + bucketId + "', '" + balance + "', '" + ImpInfo.userId + "','" + nameTxtBox.Text + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -49,6 +49,13 @@ namespace Budgette
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddBucketForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
+            this.tblBucketTableAdapter.Fill(this.mainDatabaseDataSet.tblBucket);
+
         }
     }
 }

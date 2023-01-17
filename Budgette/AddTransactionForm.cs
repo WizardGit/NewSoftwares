@@ -22,7 +22,7 @@ namespace Budgette
         private void addTransactionBtn_Click(object sender, EventArgs e)
         {
             List<string> idNumbers = new List<string>();
-            idNumbers.Add("1000");
+            idNumbers.Add("1000");            
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
@@ -41,7 +41,14 @@ namespace Budgette
 
             decimal.TryParse(amountTxtBox.Text, out decimal balance);
 
-            SqlCommand cmd = new SqlCommand("insert into tblAccount values('" + transactionId + "', '" + bankNameTxtBox.Text + "','" + accountFromTxtBox.Text + "','" + accountToTxtBox.Text + "','" + bucketToTxtBox.Text + "','" + bucketFromTxtBox.Text + "', '" + balance + "')", con);
+            SqlCommand cmd = new SqlCommand("insert into tblTransaction values(" +
+                "'" + transactionId + "', '" + ImpInfo.userId + "', GetDate(), " +
+                "'" + accountFromComboBox.Text + "','" + accountToComboBox.Text + "'," +
+                "'" + bucketFromComboBox.Text + "','" + bucketToComboBox.Text + "', " +
+                "'" + bankFromComboBox.Text + "', '" + bankToComboBox.Text + "', " +
+                "'" + balance + "')", con);
+
+
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -49,6 +56,45 @@ namespace Budgette
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddTransactionForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
+            this.tblTransactionTableAdapter.Fill(this.mainDatabaseDataSet.tblTransaction);
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand command = new SqlCommand("Select Name from tblBank where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    bankFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                    bankToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                }
+            }
+            command = new SqlCommand("Select Name from tblBucket where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    bucketFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                    bucketToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                }
+            }
+            command = new SqlCommand("Select Name from tblAccount where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    accountFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                    accountToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                }
+            }
+
+            con.Close();
         }
     }
 }

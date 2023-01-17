@@ -69,6 +69,12 @@
     <Compile Include="AddAccountForm.Designer.cs">
       <DependentUpon>AddAccountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddBankForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBankForm.Designer.cs">
+      <DependentUpon>AddBankForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddBucketForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,7 @@
     </Compile>
     <Compile Include="MainDatabaseDataSet.cs">
       <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -100,11 +107,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddAccountForm.resx">
       <DependentUpon>AddAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddBankForm.resx">
+      <DependentUpon>AddBankForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddBucketForm.resx">
       <DependentUpon>AddBucketForm.cs</DependentUpon>
@@ -129,14 +140,17 @@
     </Compile>
     <None Include="MainDatabaseDataSet.xsc">
       <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MainDatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>MainDatabaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MainDatabaseDataSet.xss">
       <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

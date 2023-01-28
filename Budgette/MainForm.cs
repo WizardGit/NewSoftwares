@@ -22,7 +22,7 @@ namespace Budgette
         private void addUserBtn_Click(object sender, EventArgs e)
         {
             AddUserForm addUserform = new AddUserForm();
-            addUserform.Show();
+            addUserform.Show();            
         }
 
         private void addBankAccountBtn_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace Budgette
 
         private void quitBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void addBucketBtn_Click(object sender, EventArgs e)

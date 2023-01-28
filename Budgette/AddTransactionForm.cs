@@ -47,9 +47,59 @@ namespace Budgette
                 "'" + bucketFromComboBox.Text + "','" + bucketToComboBox.Text + "', " +
                 "'" + bankFromComboBox.Text + "', '" + bankToComboBox.Text + "', " +
                 "'" + balance + "')", con);
+            cmd.ExecuteNonQuery();            
 
+            if ((accountFromComboBox.Text != "") && (bucketFromComboBox.Text != "") && (bankFromComboBox.Text != ""))
+            {
+                SqlCommand cmd1 = new SqlCommand("select Balance from tblAccount where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankFromComboBox.Text + "' and Name = '" + accountFromComboBox.Text + "')", con);
+                string strAccountBalance;
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strAccountBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decAccountBalance);
 
-            cmd.ExecuteNonQuery();
+                SqlCommand cmd2 = new SqlCommand("select Balance from tblBucket where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketFromComboBox.Text + "')", con);
+                string strBucketBalance;
+                using (SqlDataReader reader = cmd2.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strBucketBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decBucketBalance);
+
+                SqlCommand cmd3 = new SqlCommand("update tblAccount set Balance = '" + (decAccountBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankFromComboBox.Text + "' and Name = '" + accountFromComboBox.Text + "')", con);
+                cmd3.ExecuteNonQuery();
+                SqlCommand cmd4 = new SqlCommand("update tblBucket set Balance = '" + (decBucketBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketFromComboBox.Text + "')", con);
+                cmd4.ExecuteNonQuery();
+            }
+            if ((accountToComboBox.Text != "") && (bucketToComboBox.Text != "") && (bankToComboBox.Text != ""))
+            {
+                SqlCommand cmd1 = new SqlCommand("select Balance from tblAccount where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankToComboBox.Text + "' and Name = '" + accountToComboBox.Text + "')", con);
+                string strAccountBalance;
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strAccountBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decAccountBalance);
+
+                SqlCommand cmd2 = new SqlCommand("select Balance from tblBucket where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketToComboBox.Text + "')", con);
+                string strBucketBalance;
+                using (SqlDataReader reader = cmd2.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strBucketBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decBucketBalance);
+
+                SqlCommand cmd3 = new SqlCommand("update tblAccount set Balance = '" + (decAccountBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankToComboBox.Text + "' and Name = '" + accountFromComboBox.Text + "')", con);
+                cmd3.ExecuteNonQuery();
+                SqlCommand cmd4 = new SqlCommand("update tblBucket set Balance = '" + (decBucketBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketToComboBox.Text + "')", con);
+                cmd4.ExecuteNonQuery();
+            }            
+
             con.Close();
         }
 
@@ -95,6 +145,12 @@ namespace Budgette
             }
 
             con.Close();
+        }
+
+        private bool CompleteTransaction()
+        {
+
+            return true;
         }
     }
 }

@@ -1,3 +1,1 @@
-Refresh dataset
-sync datasets/tables to the table-thingies
-replace txtboxes on transaction with drop down menus
+SQL queries for actually doing the transaction need to be reviewed (there's an error) and minimized for in case one query fails

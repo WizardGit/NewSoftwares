@@ -23,7 +23,7 @@ namespace Budgette
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close();          
         }
 
         private void AddUserForm_Load(object sender, EventArgs e)

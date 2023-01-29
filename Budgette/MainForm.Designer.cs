@@ -40,6 +40,7 @@
             this.loginBtn = new System.Windows.Forms.Button();
             this.userLbl = new System.Windows.Forms.Label();
             this.addBankBtn = new System.Windows.Forms.Button();
+            this.dbBackupBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addUserBtn
@@ -64,7 +65,7 @@
             // 
             // quitBtn
             // 
-            this.quitBtn.Location = new System.Drawing.Point(13, 71);
+            this.quitBtn.Location = new System.Drawing.Point(12, 215);
             this.quitBtn.Name = "quitBtn";
             this.quitBtn.Size = new System.Drawing.Size(110, 23);
             this.quitBtn.TabIndex = 2;
@@ -153,11 +154,22 @@
             this.addBankBtn.UseVisualStyleBackColor = true;
             this.addBankBtn.Click += new System.EventHandler(this.addBankBtn_Click);
             // 
+            // dbBackupBtn
+            // 
+            this.dbBackupBtn.Location = new System.Drawing.Point(12, 70);
+            this.dbBackupBtn.Name = "dbBackupBtn";
+            this.dbBackupBtn.Size = new System.Drawing.Size(111, 23);
+            this.dbBackupBtn.TabIndex = 12;
+            this.dbBackupBtn.Text = "Backups";
+            this.dbBackupBtn.UseVisualStyleBackColor = true;
+            this.dbBackupBtn.Click += new System.EventHandler(this.dbBackupBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 250);
+            this.Controls.Add(this.dbBackupBtn);
             this.Controls.Add(this.addBankBtn);
             this.Controls.Add(this.userLbl);
             this.Controls.Add(this.loginBtn);
@@ -191,6 +203,7 @@
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.Label userLbl;
         private System.Windows.Forms.Button addBankBtn;
+        private System.Windows.Forms.Button dbBackupBtn;
     }
 }
 

@@ -37,7 +37,7 @@
             this.bucketFromLbl = new System.Windows.Forms.Label();
             this.accountToLbl = new System.Windows.Forms.Label();
             this.amountTxtBox = new System.Windows.Forms.TextBox();
-            this.bankFromlbl = new System.Windows.Forms.Label();
+            this.bankFromLbl = new System.Windows.Forms.Label();
             this.BankToLbl = new System.Windows.Forms.Label();
             this.accountFromComboBox = new System.Windows.Forms.ComboBox();
             this.bankToComboBox = new System.Windows.Forms.ComboBox();
@@ -74,6 +74,8 @@
             this.entityFromDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.entityToDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionTxtBox = new System.Windows.Forms.TextBox();
+            this.descriptionLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblTransactionBindingSource5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblTransactionBindingSource3)).BeginInit();
@@ -158,14 +160,14 @@
             this.amountTxtBox.Size = new System.Drawing.Size(121, 20);
             this.amountTxtBox.TabIndex = 19;
             // 
-            // bankFromlbl
+            // bankFromLbl
             // 
-            this.bankFromlbl.AutoSize = true;
-            this.bankFromlbl.Location = new System.Drawing.Point(31, 145);
-            this.bankFromlbl.Name = "bankFromlbl";
-            this.bankFromlbl.Size = new System.Drawing.Size(58, 13);
-            this.bankFromlbl.TabIndex = 24;
-            this.bankFromlbl.Text = "Bank From";
+            this.bankFromLbl.AutoSize = true;
+            this.bankFromLbl.Location = new System.Drawing.Point(31, 145);
+            this.bankFromLbl.Name = "bankFromLbl";
+            this.bankFromLbl.Size = new System.Drawing.Size(58, 13);
+            this.bankFromLbl.TabIndex = 24;
+            this.bankFromLbl.Text = "Bank From";
             // 
             // BankToLbl
             // 
@@ -331,7 +333,7 @@
             this.dataGridView1.DataSource = this.tblTransactionBindingSource4;
             this.dataGridView1.Location = new System.Drawing.Point(220, 13);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1346, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(1346, 250);
             this.dataGridView1.TabIndex = 36;
             // 
             // transactionIdDataGridViewTextBoxColumn
@@ -412,11 +414,29 @@
             this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             // 
+            // descriptionTxtBox
+            // 
+            this.descriptionTxtBox.Location = new System.Drawing.Point(95, 269);
+            this.descriptionTxtBox.Name = "descriptionTxtBox";
+            this.descriptionTxtBox.Size = new System.Drawing.Size(588, 20);
+            this.descriptionTxtBox.TabIndex = 37;
+            // 
+            // descriptionLbl
+            // 
+            this.descriptionLbl.AutoSize = true;
+            this.descriptionLbl.Location = new System.Drawing.Point(26, 272);
+            this.descriptionLbl.Name = "descriptionLbl";
+            this.descriptionLbl.Size = new System.Drawing.Size(60, 13);
+            this.descriptionLbl.TabIndex = 38;
+            this.descriptionLbl.Text = "Description";
+            // 
             // AddTransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1568, 477);
+            this.Controls.Add(this.descriptionLbl);
+            this.Controls.Add(this.descriptionTxtBox);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.entityToLbl);
             this.Controls.Add(this.entityFromLbl);
@@ -428,7 +448,7 @@
             this.Controls.Add(this.bankFromComboBox);
             this.Controls.Add(this.bankToComboBox);
             this.Controls.Add(this.accountFromComboBox);
-            this.Controls.Add(this.bankFromlbl);
+            this.Controls.Add(this.bankFromLbl);
             this.Controls.Add(this.BankToLbl);
             this.Controls.Add(this.amountTxtBox);
             this.Controls.Add(this.accountToLbl);
@@ -465,7 +485,7 @@
         private System.Windows.Forms.Label bucketFromLbl;
         private System.Windows.Forms.Label accountToLbl;
         private System.Windows.Forms.TextBox amountTxtBox;
-        private System.Windows.Forms.Label bankFromlbl;
+        private System.Windows.Forms.Label bankFromLbl;
         private System.Windows.Forms.Label BankToLbl;
         private MainDatabaseDataSet mainDatabaseDataSet;
         private System.Windows.Forms.BindingSource tblTransactionBindingSource;
@@ -507,5 +527,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn entityFromDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn entityToDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox descriptionTxtBox;
+        private System.Windows.Forms.Label descriptionLbl;
     }
 }

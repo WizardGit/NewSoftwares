@@ -18,6 +18,7 @@ namespace Budgette
         public AddTransactionForm(string localTransType)
         {
             InitializeComponent();
+            //this.Name = localTransType;
             transType = localTransType;
             if (localTransType == "withdraw")
             {
@@ -26,7 +27,10 @@ namespace Budgette
                 bankToComboBox.Visible = false;
                 entityFromTxtBox.Visible = false;
 
-                accoun
+                accountToLbl.Visible = false;
+                bucketToLbl.Visible = false;
+                BankToLbl.Visible = false;
+                entityFromLbl.Visible = false;
             }
             else if(localTransType == "deposit")
             {
@@ -34,15 +38,23 @@ namespace Budgette
                 bucketFromComboBox.Visible = false;
                 bankFromComboBox.Visible = false;
                 entityToTxtBox.Visible = false;
+
+                accountFromLbl.Visible = false;
+                bucketFromLbl.Visible = false;
+                bankFromLbl.Visible = false;
+                entityToLbl.Visible = false;
             }
             else if (localTransType == "transfer")
             {
                 entityFromTxtBox.Visible = false;
                 entityToTxtBox.Visible = false;
+
+                entityToLbl.Visible = false;
+                entityFromLbl.Visible = false;
             }
             else
             {
-
+                Console.Write("Unknown Transfer initiated!");
             }
         }
 
@@ -62,9 +74,66 @@ namespace Budgette
                     idNumbers.Add(string.Format("{0}", reader["TransactionId"]));
             }
 
-
             int.TryParse(idNumbers[idNumbers.Count - 1], out int transactionId);
-            transactionId++;
+            transactionId++;            
+
+            if (transType == "withdraw")
+                PerformWithdraw(transactionId);
+            else if (transType == "deposit")
+                PerformDeposit(transactionId);
+            else if (transType == "transfer")
+                PerformTransfer(transactionId);
+            else
+                Console.Write("Unknown Transfer initiated!");                     
+
+            con.Close();
+        }        
+
+        private void AddTransactionForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet1.tblTransaction' table. You can move, or remove it, as needed.
+            this.tblTransactionTableAdapter1.Fill(this.mainDatabaseDataSet1.tblTransaction);
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
+            this.tblTransactionTableAdapter.Fill(this.mainDatabaseDataSet.tblTransaction);
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand command = new SqlCommand("Select Name from tblBank where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    bankFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                    bankToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                }
+            }
+            command = new SqlCommand("Select Name from tblBucket where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    bucketFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                    bucketToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                }
+            }
+            command = new SqlCommand("Select Name from tblAccount where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    accountFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                    accountToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                }
+            }
+
+            con.Close();
+        }
+
+        private bool PerformWithdraw(int transactionId)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
 
             decimal.TryParse(amountTxtBox.Text, out decimal balance);
 
@@ -73,8 +142,106 @@ namespace Budgette
                 "'" + accountFromComboBox.Text + "','" + accountToComboBox.Text + "'," +
                 "'" + bucketFromComboBox.Text + "','" + bucketToComboBox.Text + "', " +
                 "'" + bankFromComboBox.Text + "', '" + bankToComboBox.Text + "', " +
+                "'" + entityFromTxtBox.Text + "', '" + entityToTxtBox.Text + "', " +
+                "'" + descriptionTxtBox.Text + "', " +
                 "'" + balance + "')", con);
-            cmd.ExecuteNonQuery();            
+            cmd.ExecuteNonQuery();
+
+            if ((accountFromComboBox.Text != "") && (bucketFromComboBox.Text != "") && (bankFromComboBox.Text != ""))
+            {
+                SqlCommand cmd1 = new SqlCommand("select Balance from tblAccount where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankFromComboBox.Text + "' and Name = '" + accountFromComboBox.Text + "')", con);
+                string strAccountBalance;
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strAccountBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decAccountBalance);
+
+                SqlCommand cmd2 = new SqlCommand("select Balance from tblBucket where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketFromComboBox.Text + "')", con);
+                string strBucketBalance;
+                using (SqlDataReader reader = cmd2.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strBucketBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decBucketBalance);
+
+                SqlCommand cmd3 = new SqlCommand("update tblAccount set Balance = '" + (decAccountBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankFromComboBox.Text + "' and Name = '" + accountFromComboBox.Text + "')", con);
+                cmd3.ExecuteNonQuery();
+                SqlCommand cmd4 = new SqlCommand("update tblBucket set Balance = '" + (decBucketBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketFromComboBox.Text + "')", con);
+                cmd4.ExecuteNonQuery();
+            }
+
+            con.Close();
+            return true;
+        }
+
+        private bool PerformDeposit(int transactionId)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            decimal.TryParse(amountTxtBox.Text, out decimal balance);
+
+            SqlCommand cmd = new SqlCommand("insert into tblTransaction values(" +
+                "'" + transactionId + "', '" + ImpInfo.userId + "', GetDate(), " +
+                "'" + accountFromComboBox.Text + "','" + accountToComboBox.Text + "'," +
+                "'" + bucketFromComboBox.Text + "','" + bucketToComboBox.Text + "', " +
+                "'" + bankFromComboBox.Text + "', '" + bankToComboBox.Text + "', " +
+                "'" + entityFromTxtBox.Text + "', '" + entityToTxtBox.Text + "', " +
+                "'" + descriptionTxtBox.Text + "', " +
+                "'" + balance + "')", con);
+            cmd.ExecuteNonQuery();
+            
+            if ((accountToComboBox.Text != "") && (bucketToComboBox.Text != "") && (bankToComboBox.Text != ""))
+            {
+                SqlCommand cmd1 = new SqlCommand("select Balance from tblAccount where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankToComboBox.Text + "' and Name = '" + accountToComboBox.Text + "')", con);
+                string strAccountBalance;
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strAccountBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decAccountBalance);
+
+                SqlCommand cmd2 = new SqlCommand("select Balance from tblBucket where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketToComboBox.Text + "')", con);
+                string strBucketBalance;
+                using (SqlDataReader reader = cmd2.ExecuteReader())
+                {
+                    if (reader.Read())
+                        strBucketBalance = string.Format("{0}", reader["Balance"]);
+                }
+                decimal.TryParse(amountTxtBox.Text, out decimal decBucketBalance);
+
+                SqlCommand cmd3 = new SqlCommand("update tblAccount set Balance = '" + (decAccountBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Bank = '" + bankToComboBox.Text + "' and Name = '" + accountFromComboBox.Text + "')", con);
+                cmd3.ExecuteNonQuery();
+                SqlCommand cmd4 = new SqlCommand("update tblBucket set Balance = '" + (decBucketBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketToComboBox.Text + "')", con);
+                cmd4.ExecuteNonQuery();
+            }
+
+            con.Close();
+            return true;
+        }
+
+        private bool PerformTransfer(int transNum)
+        {
+
+            int transactionId = transNum;
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            decimal.TryParse(amountTxtBox.Text, out decimal balance);
+
+            SqlCommand cmd = new SqlCommand("insert into tblTransaction values(" +
+                "'" + transactionId + "', '" + ImpInfo.userId + "', GetDate(), " +
+                "'" + accountFromComboBox.Text + "','" + accountToComboBox.Text + "'," +
+                "'" + bucketFromComboBox.Text + "','" + bucketToComboBox.Text + "', " +
+                "'" + bankFromComboBox.Text + "', '" + bankToComboBox.Text + "', " +
+                "'" + entityFromTxtBox.Text + "', '" + entityToTxtBox.Text + "', " +
+                "'" + descriptionTxtBox.Text + "', " +
+                "'" + balance + "')", con);
+            cmd.ExecuteNonQuery();
 
             if ((accountFromComboBox.Text != "") && (bucketFromComboBox.Text != "") && (bankFromComboBox.Text != ""))
             {
@@ -125,55 +292,10 @@ namespace Budgette
                 cmd3.ExecuteNonQuery();
                 SqlCommand cmd4 = new SqlCommand("update tblBucket set Balance = '" + (decBucketBalance - balance) + "' where UserId = '" + ImpInfo.userId + "' and Name = '" + bucketToComboBox.Text + "')", con);
                 cmd4.ExecuteNonQuery();
-            }            
-
-            con.Close();
-        }
-
-        private void cancelBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void AddTransactionForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'mainDatabaseDataSet1.tblTransaction' table. You can move, or remove it, as needed.
-            this.tblTransactionTableAdapter1.Fill(this.mainDatabaseDataSet1.tblTransaction);
-            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
-            this.tblTransactionTableAdapter.Fill(this.mainDatabaseDataSet.tblTransaction);
-
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
-            con.Open();
-
-            SqlCommand command = new SqlCommand("Select Name from tblBank where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                {
-                    bankFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-                    bankToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-                }
-            }
-            command = new SqlCommand("Select Name from tblBucket where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                {
-                    bucketFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-                    bucketToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-                }
-            }
-            command = new SqlCommand("Select Name from tblAccount where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                {
-                    accountFromComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-                    accountToComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-                }
             }
 
             con.Close();
+            return true;
         }
 
         private bool CompleteTransaction()
@@ -181,6 +303,10 @@ namespace Budgette
 
             return true;
         }
-        //add description field
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

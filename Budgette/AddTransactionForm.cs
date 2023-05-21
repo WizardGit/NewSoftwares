@@ -14,9 +14,36 @@ namespace Budgette
 {
     public partial class AddTransactionForm : Form
     {
-        public AddTransactionForm()
+        public string transType;
+        public AddTransactionForm(string localTransType)
         {
             InitializeComponent();
+            transType = localTransType;
+            if (localTransType == "withdraw")
+            {
+                accountToComboBox.Visible = false;
+                bucketToComboBox.Visible = false;
+                bankToComboBox.Visible = false;
+                entityFromTxtBox.Visible = false;
+
+                accoun
+            }
+            else if(localTransType == "deposit")
+            {
+                accountFromComboBox.Visible = false;
+                bucketFromComboBox.Visible = false;
+                bankFromComboBox.Visible = false;
+                entityToTxtBox.Visible = false;
+            }
+            else if (localTransType == "transfer")
+            {
+                entityFromTxtBox.Visible = false;
+                entityToTxtBox.Visible = false;
+            }
+            else
+            {
+
+            }
         }
 
         private void addTransactionBtn_Click(object sender, EventArgs e)
@@ -110,6 +137,8 @@ namespace Budgette
 
         private void AddTransactionForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet1.tblTransaction' table. You can move, or remove it, as needed.
+            this.tblTransactionTableAdapter1.Fill(this.mainDatabaseDataSet1.tblTransaction);
             // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
             this.tblTransactionTableAdapter.Fill(this.mainDatabaseDataSet.tblTransaction);
 
@@ -152,5 +181,6 @@ namespace Budgette
 
             return true;
         }
+        //add description field
     }
 }

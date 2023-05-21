@@ -45,7 +45,7 @@ namespace Budgette
 
         private void addTransactionBtn_Click(object sender, EventArgs e)
         {
-            AddTransactionForm addTransaction = new AddTransactionForm();
+            AddTransactionForm addTransaction = new AddTransactionForm("transfer");
             addTransaction.Show();
         }
 
@@ -93,6 +93,24 @@ namespace Budgette
         {
             BackupsForm backupsForm = new BackupsForm();
             backupsForm.Show();
+        }
+
+        private void makeTransferBtn_Click(object sender, EventArgs e)
+        {
+            AddTransactionForm addTransaction = new AddTransactionForm("transfer");
+            addTransaction.Show();
+        }
+
+        private void makeWithdrawBtn_Click(object sender, EventArgs e)
+        {
+            AddTransactionForm addTransaction = new AddTransactionForm("withdraw");
+            addTransaction.Show();
+        }
+
+        private void makeDepositBtn_Click(object sender, EventArgs e)
+        {
+            AddTransactionForm addTransaction = new AddTransactionForm("deposit");
+            addTransaction.Show();
         }
     }
     public static class ImpInfo

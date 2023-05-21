@@ -103,6 +103,11 @@
       <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="MainDatabaseDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDatabaseDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +165,17 @@
     <None Include="MainDatabaseDataSet.xss">
       <DependentUpon>MainDatabaseDataSet.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MainDatabaseDataSet1.xsc">
+      <DependentUpon>MainDatabaseDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MainDatabaseDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MainDatabaseDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MainDatabaseDataSet1.xss">
+      <DependentUpon>MainDatabaseDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -41,6 +41,9 @@
             this.userLbl = new System.Windows.Forms.Label();
             this.addBankBtn = new System.Windows.Forms.Button();
             this.dbBackupBtn = new System.Windows.Forms.Button();
+            this.makeDepositBtn = new System.Windows.Forms.Button();
+            this.makeTransferBtn = new System.Windows.Forms.Button();
+            this.makeWithdrawBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addUserBtn
@@ -164,11 +167,44 @@
             this.dbBackupBtn.UseVisualStyleBackColor = true;
             this.dbBackupBtn.Click += new System.EventHandler(this.dbBackupBtn_Click);
             // 
+            // makeDepositBtn
+            // 
+            this.makeDepositBtn.Location = new System.Drawing.Point(11, 147);
+            this.makeDepositBtn.Name = "makeDepositBtn";
+            this.makeDepositBtn.Size = new System.Drawing.Size(111, 23);
+            this.makeDepositBtn.TabIndex = 13;
+            this.makeDepositBtn.Text = "Make Deposit";
+            this.makeDepositBtn.UseVisualStyleBackColor = true;
+            this.makeDepositBtn.Click += new System.EventHandler(this.makeDepositBtn_Click);
+            // 
+            // makeTransferBtn
+            // 
+            this.makeTransferBtn.Location = new System.Drawing.Point(129, 122);
+            this.makeTransferBtn.Name = "makeTransferBtn";
+            this.makeTransferBtn.Size = new System.Drawing.Size(111, 23);
+            this.makeTransferBtn.TabIndex = 14;
+            this.makeTransferBtn.Text = "Make Transfer";
+            this.makeTransferBtn.UseVisualStyleBackColor = true;
+            this.makeTransferBtn.Click += new System.EventHandler(this.makeTransferBtn_Click);
+            // 
+            // makeWithdrawBtn
+            // 
+            this.makeWithdrawBtn.Location = new System.Drawing.Point(11, 122);
+            this.makeWithdrawBtn.Name = "makeWithdrawBtn";
+            this.makeWithdrawBtn.Size = new System.Drawing.Size(111, 23);
+            this.makeWithdrawBtn.TabIndex = 15;
+            this.makeWithdrawBtn.Text = "Make Withdrawal";
+            this.makeWithdrawBtn.UseVisualStyleBackColor = true;
+            this.makeWithdrawBtn.Click += new System.EventHandler(this.makeWithdrawBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 250);
+            this.Controls.Add(this.makeWithdrawBtn);
+            this.Controls.Add(this.makeTransferBtn);
+            this.Controls.Add(this.makeDepositBtn);
             this.Controls.Add(this.dbBackupBtn);
             this.Controls.Add(this.addBankBtn);
             this.Controls.Add(this.userLbl);
@@ -204,6 +240,9 @@
         private System.Windows.Forms.Label userLbl;
         private System.Windows.Forms.Button addBankBtn;
         private System.Windows.Forms.Button dbBackupBtn;
+        private System.Windows.Forms.Button makeDepositBtn;
+        private System.Windows.Forms.Button makeTransferBtn;
+        private System.Windows.Forms.Button makeWithdrawBtn;
     }
 }
 

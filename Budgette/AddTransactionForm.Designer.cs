@@ -49,9 +49,7 @@
             this.entityToTxtBox = new System.Windows.Forms.TextBox();
             this.entityFromLbl = new System.Windows.Forms.Label();
             this.entityToLbl = new System.Windows.Forms.Label();
-            this.mainDatabaseDataSet1 = new Budgette.MainDatabaseDataSet1();
             this.tblTransactionBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
-            this.tblTransactionTableAdapter1 = new Budgette.MainDatabaseDataSet1TableAdapters.tblTransactionTableAdapter();
             this.tblTransactionBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.mainDatabaseDataSet = new Budgette.MainDatabaseDataSet();
             this.tblTransactionBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
@@ -76,7 +74,6 @@
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionTxtBox = new System.Windows.Forms.TextBox();
             this.descriptionLbl = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblTransactionBindingSource5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblTransactionBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).BeginInit();
@@ -105,7 +102,7 @@
             this.cancelBtn.TabIndex = 10;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // addTransactionBtn
             // 
@@ -115,7 +112,7 @@
             this.addTransactionBtn.TabIndex = 7;
             this.addTransactionBtn.Text = "Add Transaction";
             this.addTransactionBtn.UseVisualStyleBackColor = true;
-            this.addTransactionBtn.Click += new System.EventHandler(this.addTransactionBtn_Click);
+            this.addTransactionBtn.Click += new System.EventHandler(this.AddTransactionBtn_Click);
             // 
             // AmountLbl
             // 
@@ -256,21 +253,7 @@
             this.entityToLbl.Name = "entityToLbl";
             this.entityToLbl.Size = new System.Drawing.Size(49, 13);
             this.entityToLbl.TabIndex = 35;
-            this.entityToLbl.Text = "Entity To";
-            // 
-            // mainDatabaseDataSet1
-            // 
-            this.mainDatabaseDataSet1.DataSetName = "MainDatabaseDataSet1";
-            this.mainDatabaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblTransactionBindingSource5
-            // 
-            this.tblTransactionBindingSource5.DataMember = "tblTransaction";
-            this.tblTransactionBindingSource5.DataSource = this.mainDatabaseDataSet1;
-            // 
-            // tblTransactionTableAdapter1
-            // 
-            this.tblTransactionTableAdapter1.ClearBeforeFill = true;
+            this.entityToLbl.Text = "Entity To";     
             // 
             // tblTransactionBindingSource3
             // 
@@ -461,7 +444,6 @@
             this.Name = "AddTransactionForm";
             this.Text = "AddTransactionForm";
             this.Load += new System.EventHandler(this.AddTransactionForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblTransactionBindingSource5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblTransactionBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).EndInit();
@@ -509,9 +491,7 @@
         private System.Windows.Forms.TextBox entityToTxtBox;
         private System.Windows.Forms.Label entityFromLbl;
         private System.Windows.Forms.Label entityToLbl;
-        private MainDatabaseDataSet1 mainDatabaseDataSet1;
         private System.Windows.Forms.BindingSource tblTransactionBindingSource5;
-        private MainDatabaseDataSet1TableAdapters.tblTransactionTableAdapter tblTransactionTableAdapter1;
         private MainDatabaseDataSet mainDatabaseDataSet2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn transactionIdDataGridViewTextBoxColumn;

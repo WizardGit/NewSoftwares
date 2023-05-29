@@ -59,10 +59,9 @@ namespace Budgette
             }
         }
 
-        private void addTransactionBtn_Click(object sender, EventArgs e)
+        private void AddTransactionBtn_Click(object sender, EventArgs e)
         {
-            List<string> idNumbers = new List<string>();
-            idNumbers.Add("1000");            
+            List<string> idNumbers = new List<string> { "1000" };
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
@@ -90,8 +89,6 @@ namespace Budgette
 
         private void AddTransactionForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'mainDatabaseDataSet1.tblTransaction' table. You can move, or remove it, as needed.
-            this.tblTransactionTableAdapter1.Fill(this.mainDatabaseDataSet1.tblTransaction);
             // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
             this.tblTransactionTableAdapter.Fill(this.mainDatabaseDataSet.tblTransaction);
 
@@ -304,7 +301,7 @@ namespace Budgette
             return true;
         }
 
-        private void cancelBtn_Click(object sender, EventArgs e)
+        private void CancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }

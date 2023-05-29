@@ -28,77 +28,84 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.addUserBtn = new System.Windows.Forms.Button();
-            this.addBankAccountBtn = new System.Windows.Forms.Button();
-            this.quitBtn = new System.Windows.Forms.Button();
-            this.addBucketBtn = new System.Windows.Forms.Button();
-            this.addTransactionBtn = new System.Windows.Forms.Button();
+            this.AddUserBtn = new System.Windows.Forms.Button();
+            this.AddBankAccountBtn = new System.Windows.Forms.Button();
+            this.QuitBtn = new System.Windows.Forms.Button();
+            this.AddBucketBtn = new System.Windows.Forms.Button();
+            this.AddTransactionBtn = new System.Windows.Forms.Button();
             this.usernameTxtBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.passwordTxtBox = new System.Windows.Forms.TextBox();
-            this.loginBtn = new System.Windows.Forms.Button();
+            this.LoginBtn = new System.Windows.Forms.Button();
             this.userLbl = new System.Windows.Forms.Label();
-            this.addBankBtn = new System.Windows.Forms.Button();
-            this.dbBackupBtn = new System.Windows.Forms.Button();
-            this.makeDepositBtn = new System.Windows.Forms.Button();
-            this.makeTransferBtn = new System.Windows.Forms.Button();
-            this.makeWithdrawBtn = new System.Windows.Forms.Button();
+            this.AddBankBtn = new System.Windows.Forms.Button();
+            this.DbBackupBtn = new System.Windows.Forms.Button();
+            this.MakeDepositBtn = new System.Windows.Forms.Button();
+            this.MakeTransferBtn = new System.Windows.Forms.Button();
+            this.MakeWithdrawBtn = new System.Windows.Forms.Button();
+            this.ViewAcctBalBtn = new System.Windows.Forms.Button();
+            this.TransactionsGrpBox = new System.Windows.Forms.GroupBox();
+            this.UsrConfigGrpBox = new System.Windows.Forms.GroupBox();
+            this.LoginGrpBox = new System.Windows.Forms.GroupBox();
+            this.TransactionsGrpBox.SuspendLayout();
+            this.UsrConfigGrpBox.SuspendLayout();
+            this.LoginGrpBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // addUserBtn
+            // AddUserBtn
             // 
-            this.addUserBtn.Location = new System.Drawing.Point(12, 12);
-            this.addUserBtn.Name = "addUserBtn";
-            this.addUserBtn.Size = new System.Drawing.Size(111, 23);
-            this.addUserBtn.TabIndex = 0;
-            this.addUserBtn.Text = "Add User";
-            this.addUserBtn.UseVisualStyleBackColor = true;
-            this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
+            this.AddUserBtn.Location = new System.Drawing.Point(7, 19);
+            this.AddUserBtn.Name = "AddUserBtn";
+            this.AddUserBtn.Size = new System.Drawing.Size(111, 23);
+            this.AddUserBtn.TabIndex = 0;
+            this.AddUserBtn.Text = "Add User";
+            this.AddUserBtn.UseVisualStyleBackColor = true;
+            this.AddUserBtn.Click += new System.EventHandler(this.AddUserBtn_Click);
             // 
-            // addBankAccountBtn
+            // AddBankAccountBtn
             // 
-            this.addBankAccountBtn.Location = new System.Drawing.Point(12, 41);
-            this.addBankAccountBtn.Name = "addBankAccountBtn";
-            this.addBankAccountBtn.Size = new System.Drawing.Size(111, 23);
-            this.addBankAccountBtn.TabIndex = 1;
-            this.addBankAccountBtn.Text = "Add Bank Account";
-            this.addBankAccountBtn.UseVisualStyleBackColor = true;
-            this.addBankAccountBtn.Click += new System.EventHandler(this.addBankAccountBtn_Click);
+            this.AddBankAccountBtn.Location = new System.Drawing.Point(7, 48);
+            this.AddBankAccountBtn.Name = "AddBankAccountBtn";
+            this.AddBankAccountBtn.Size = new System.Drawing.Size(111, 23);
+            this.AddBankAccountBtn.TabIndex = 1;
+            this.AddBankAccountBtn.Text = "Add Bank Account";
+            this.AddBankAccountBtn.UseVisualStyleBackColor = true;
+            this.AddBankAccountBtn.Click += new System.EventHandler(this.AddBankAccountBtn_Click);
             // 
-            // quitBtn
+            // QuitBtn
             // 
-            this.quitBtn.Location = new System.Drawing.Point(12, 215);
-            this.quitBtn.Name = "quitBtn";
-            this.quitBtn.Size = new System.Drawing.Size(110, 23);
-            this.quitBtn.TabIndex = 2;
-            this.quitBtn.Text = "QUIT";
-            this.quitBtn.UseVisualStyleBackColor = true;
-            this.quitBtn.Click += new System.EventHandler(this.quitBtn_Click);
+            this.QuitBtn.Location = new System.Drawing.Point(13, 258);
+            this.QuitBtn.Name = "QuitBtn";
+            this.QuitBtn.Size = new System.Drawing.Size(110, 23);
+            this.QuitBtn.TabIndex = 2;
+            this.QuitBtn.Text = "QUIT";
+            this.QuitBtn.UseVisualStyleBackColor = true;
+            this.QuitBtn.Click += new System.EventHandler(this.QuitBtn_Click);
             // 
-            // addBucketBtn
+            // AddBucketBtn
             // 
-            this.addBucketBtn.Location = new System.Drawing.Point(129, 12);
-            this.addBucketBtn.Name = "addBucketBtn";
-            this.addBucketBtn.Size = new System.Drawing.Size(111, 23);
-            this.addBucketBtn.TabIndex = 3;
-            this.addBucketBtn.Text = "Add Bucket";
-            this.addBucketBtn.UseVisualStyleBackColor = true;
-            this.addBucketBtn.Click += new System.EventHandler(this.addBucketBtn_Click);
+            this.AddBucketBtn.Location = new System.Drawing.Point(124, 19);
+            this.AddBucketBtn.Name = "AddBucketBtn";
+            this.AddBucketBtn.Size = new System.Drawing.Size(111, 23);
+            this.AddBucketBtn.TabIndex = 3;
+            this.AddBucketBtn.Text = "Add Bucket";
+            this.AddBucketBtn.UseVisualStyleBackColor = true;
+            this.AddBucketBtn.Click += new System.EventHandler(this.AddBucketBtn_Click);
             // 
-            // addTransactionBtn
+            // AddTransactionBtn
             // 
-            this.addTransactionBtn.Location = new System.Drawing.Point(129, 41);
-            this.addTransactionBtn.Name = "addTransactionBtn";
-            this.addTransactionBtn.Size = new System.Drawing.Size(111, 23);
-            this.addTransactionBtn.TabIndex = 4;
-            this.addTransactionBtn.Text = "Add Transaction";
-            this.addTransactionBtn.UseVisualStyleBackColor = true;
-            this.addTransactionBtn.Click += new System.EventHandler(this.addTransactionBtn_Click);
+            this.AddTransactionBtn.Location = new System.Drawing.Point(127, 44);
+            this.AddTransactionBtn.Name = "AddTransactionBtn";
+            this.AddTransactionBtn.Size = new System.Drawing.Size(111, 23);
+            this.AddTransactionBtn.TabIndex = 4;
+            this.AddTransactionBtn.Text = "Add Transaction";
+            this.AddTransactionBtn.UseVisualStyleBackColor = true;
+            this.AddTransactionBtn.Click += new System.EventHandler(this.AddTransactionBtn_Click);
             // 
             // usernameTxtBox
             // 
-            this.usernameTxtBox.Location = new System.Drawing.Point(396, 15);
+            this.usernameTxtBox.Location = new System.Drawing.Point(82, 19);
             this.usernameTxtBox.Name = "usernameTxtBox";
             this.usernameTxtBox.Size = new System.Drawing.Size(100, 20);
             this.usernameTxtBox.TabIndex = 5;
@@ -106,7 +113,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(325, 18);
+            this.label1.Location = new System.Drawing.Point(11, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 6;
@@ -115,7 +122,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(325, 58);
+            this.label2.Location = new System.Drawing.Point(11, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 7;
@@ -123,126 +130,173 @@
             // 
             // passwordTxtBox
             // 
-            this.passwordTxtBox.Location = new System.Drawing.Point(396, 55);
+            this.passwordTxtBox.Location = new System.Drawing.Point(82, 59);
             this.passwordTxtBox.Name = "passwordTxtBox";
             this.passwordTxtBox.Size = new System.Drawing.Size(100, 20);
             this.passwordTxtBox.TabIndex = 8;
             // 
-            // loginBtn
+            // LoginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(386, 99);
-            this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(110, 23);
-            this.loginBtn.TabIndex = 9;
-            this.loginBtn.Text = "Log In";
-            this.loginBtn.UseVisualStyleBackColor = true;
-            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            this.LoginBtn.Location = new System.Drawing.Point(72, 103);
+            this.LoginBtn.Name = "LoginBtn";
+            this.LoginBtn.Size = new System.Drawing.Size(110, 23);
+            this.LoginBtn.TabIndex = 9;
+            this.LoginBtn.Text = "Log In";
+            this.LoginBtn.UseVisualStyleBackColor = true;
+            this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
             // userLbl
             // 
             this.userLbl.AutoSize = true;
-            this.userLbl.Location = new System.Drawing.Point(393, 157);
+            this.userLbl.Location = new System.Drawing.Point(11, 136);
             this.userLbl.Name = "userLbl";
             this.userLbl.Size = new System.Drawing.Size(45, 13);
             this.userLbl.TabIndex = 10;
             this.userLbl.Text = "User is: ";
             // 
-            // addBankBtn
+            // AddBankBtn
             // 
-            this.addBankBtn.Location = new System.Drawing.Point(129, 70);
-            this.addBankBtn.Name = "addBankBtn";
-            this.addBankBtn.Size = new System.Drawing.Size(111, 23);
-            this.addBankBtn.TabIndex = 11;
-            this.addBankBtn.Text = "Add Bank";
-            this.addBankBtn.UseVisualStyleBackColor = true;
-            this.addBankBtn.Click += new System.EventHandler(this.addBankBtn_Click);
+            this.AddBankBtn.Location = new System.Drawing.Point(124, 77);
+            this.AddBankBtn.Name = "AddBankBtn";
+            this.AddBankBtn.Size = new System.Drawing.Size(111, 23);
+            this.AddBankBtn.TabIndex = 11;
+            this.AddBankBtn.Text = "Add Bank";
+            this.AddBankBtn.UseVisualStyleBackColor = true;
+            this.AddBankBtn.Click += new System.EventHandler(this.AddBankBtn_Click);
             // 
-            // dbBackupBtn
+            // DbBackupBtn
             // 
-            this.dbBackupBtn.Location = new System.Drawing.Point(12, 70);
-            this.dbBackupBtn.Name = "dbBackupBtn";
-            this.dbBackupBtn.Size = new System.Drawing.Size(111, 23);
-            this.dbBackupBtn.TabIndex = 12;
-            this.dbBackupBtn.Text = "Backups";
-            this.dbBackupBtn.UseVisualStyleBackColor = true;
-            this.dbBackupBtn.Click += new System.EventHandler(this.dbBackupBtn_Click);
+            this.DbBackupBtn.Location = new System.Drawing.Point(7, 77);
+            this.DbBackupBtn.Name = "DbBackupBtn";
+            this.DbBackupBtn.Size = new System.Drawing.Size(111, 23);
+            this.DbBackupBtn.TabIndex = 12;
+            this.DbBackupBtn.Text = "Backups";
+            this.DbBackupBtn.UseVisualStyleBackColor = true;
+            this.DbBackupBtn.Click += new System.EventHandler(this.DbBackupBtn_Click);
             // 
-            // makeDepositBtn
+            // MakeDepositBtn
             // 
-            this.makeDepositBtn.Location = new System.Drawing.Point(11, 147);
-            this.makeDepositBtn.Name = "makeDepositBtn";
-            this.makeDepositBtn.Size = new System.Drawing.Size(111, 23);
-            this.makeDepositBtn.TabIndex = 13;
-            this.makeDepositBtn.Text = "Make Deposit";
-            this.makeDepositBtn.UseVisualStyleBackColor = true;
-            this.makeDepositBtn.Click += new System.EventHandler(this.makeDepositBtn_Click);
+            this.MakeDepositBtn.Location = new System.Drawing.Point(9, 44);
+            this.MakeDepositBtn.Name = "MakeDepositBtn";
+            this.MakeDepositBtn.Size = new System.Drawing.Size(111, 23);
+            this.MakeDepositBtn.TabIndex = 13;
+            this.MakeDepositBtn.Text = "Make Deposit";
+            this.MakeDepositBtn.UseVisualStyleBackColor = true;
+            this.MakeDepositBtn.Click += new System.EventHandler(this.MakeDepositBtn_Click);
             // 
-            // makeTransferBtn
+            // MakeTransferBtn
             // 
-            this.makeTransferBtn.Location = new System.Drawing.Point(129, 122);
-            this.makeTransferBtn.Name = "makeTransferBtn";
-            this.makeTransferBtn.Size = new System.Drawing.Size(111, 23);
-            this.makeTransferBtn.TabIndex = 14;
-            this.makeTransferBtn.Text = "Make Transfer";
-            this.makeTransferBtn.UseVisualStyleBackColor = true;
-            this.makeTransferBtn.Click += new System.EventHandler(this.makeTransferBtn_Click);
+            this.MakeTransferBtn.Location = new System.Drawing.Point(127, 19);
+            this.MakeTransferBtn.Name = "MakeTransferBtn";
+            this.MakeTransferBtn.Size = new System.Drawing.Size(111, 23);
+            this.MakeTransferBtn.TabIndex = 14;
+            this.MakeTransferBtn.Text = "Make Transfer";
+            this.MakeTransferBtn.UseVisualStyleBackColor = true;
+            this.MakeTransferBtn.Click += new System.EventHandler(this.MakeTransferBtn_Click);
             // 
-            // makeWithdrawBtn
+            // MakeWithdrawBtn
             // 
-            this.makeWithdrawBtn.Location = new System.Drawing.Point(11, 122);
-            this.makeWithdrawBtn.Name = "makeWithdrawBtn";
-            this.makeWithdrawBtn.Size = new System.Drawing.Size(111, 23);
-            this.makeWithdrawBtn.TabIndex = 15;
-            this.makeWithdrawBtn.Text = "Make Withdrawal";
-            this.makeWithdrawBtn.UseVisualStyleBackColor = true;
-            this.makeWithdrawBtn.Click += new System.EventHandler(this.makeWithdrawBtn_Click);
+            this.MakeWithdrawBtn.Location = new System.Drawing.Point(9, 19);
+            this.MakeWithdrawBtn.Name = "MakeWithdrawBtn";
+            this.MakeWithdrawBtn.Size = new System.Drawing.Size(111, 23);
+            this.MakeWithdrawBtn.TabIndex = 15;
+            this.MakeWithdrawBtn.Text = "Make Withdrawal";
+            this.MakeWithdrawBtn.UseVisualStyleBackColor = true;
+            this.MakeWithdrawBtn.Click += new System.EventHandler(this.MakeWithdrawBtn_Click);
+            // 
+            // ViewAcctBalBtn
+            // 
+            this.ViewAcctBalBtn.Location = new System.Drawing.Point(12, 216);
+            this.ViewAcctBalBtn.Name = "ViewAcctBalBtn";
+            this.ViewAcctBalBtn.Size = new System.Drawing.Size(111, 36);
+            this.ViewAcctBalBtn.TabIndex = 16;
+            this.ViewAcctBalBtn.Text = "View Account Balances";
+            this.ViewAcctBalBtn.UseVisualStyleBackColor = true;
+            // 
+            // TransactionsGrpBox
+            // 
+            this.TransactionsGrpBox.Controls.Add(this.MakeTransferBtn);
+            this.TransactionsGrpBox.Controls.Add(this.AddTransactionBtn);
+            this.TransactionsGrpBox.Controls.Add(this.MakeWithdrawBtn);
+            this.TransactionsGrpBox.Controls.Add(this.MakeDepositBtn);
+            this.TransactionsGrpBox.Location = new System.Drawing.Point(12, 12);
+            this.TransactionsGrpBox.Name = "TransactionsGrpBox";
+            this.TransactionsGrpBox.Size = new System.Drawing.Size(253, 79);
+            this.TransactionsGrpBox.TabIndex = 17;
+            this.TransactionsGrpBox.TabStop = false;
+            this.TransactionsGrpBox.Text = "Transactions";
+            // 
+            // UsrConfigGrpBox
+            // 
+            this.UsrConfigGrpBox.Controls.Add(this.AddBucketBtn);
+            this.UsrConfigGrpBox.Controls.Add(this.AddUserBtn);
+            this.UsrConfigGrpBox.Controls.Add(this.AddBankAccountBtn);
+            this.UsrConfigGrpBox.Controls.Add(this.DbBackupBtn);
+            this.UsrConfigGrpBox.Controls.Add(this.AddBankBtn);
+            this.UsrConfigGrpBox.Location = new System.Drawing.Point(12, 99);
+            this.UsrConfigGrpBox.Name = "UsrConfigGrpBox";
+            this.UsrConfigGrpBox.Size = new System.Drawing.Size(253, 111);
+            this.UsrConfigGrpBox.TabIndex = 18;
+            this.UsrConfigGrpBox.TabStop = false;
+            this.UsrConfigGrpBox.Text = "User Configuration";
+            // 
+            // LoginGrpBox
+            // 
+            this.LoginGrpBox.Controls.Add(this.usernameTxtBox);
+            this.LoginGrpBox.Controls.Add(this.label1);
+            this.LoginGrpBox.Controls.Add(this.label2);
+            this.LoginGrpBox.Controls.Add(this.passwordTxtBox);
+            this.LoginGrpBox.Controls.Add(this.userLbl);
+            this.LoginGrpBox.Controls.Add(this.LoginBtn);
+            this.LoginGrpBox.Location = new System.Drawing.Point(286, 12);
+            this.LoginGrpBox.Name = "LoginGrpBox";
+            this.LoginGrpBox.Size = new System.Drawing.Size(200, 161);
+            this.LoginGrpBox.TabIndex = 19;
+            this.LoginGrpBox.TabStop = false;
+            this.LoginGrpBox.Text = "Login";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 250);
-            this.Controls.Add(this.makeWithdrawBtn);
-            this.Controls.Add(this.makeTransferBtn);
-            this.Controls.Add(this.makeDepositBtn);
-            this.Controls.Add(this.dbBackupBtn);
-            this.Controls.Add(this.addBankBtn);
-            this.Controls.Add(this.userLbl);
-            this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.passwordTxtBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.usernameTxtBox);
-            this.Controls.Add(this.addTransactionBtn);
-            this.Controls.Add(this.addBucketBtn);
-            this.Controls.Add(this.quitBtn);
-            this.Controls.Add(this.addBankAccountBtn);
-            this.Controls.Add(this.addUserBtn);
+            this.ClientSize = new System.Drawing.Size(520, 303);
+            this.Controls.Add(this.LoginGrpBox);
+            this.Controls.Add(this.UsrConfigGrpBox);
+            this.Controls.Add(this.TransactionsGrpBox);
+            this.Controls.Add(this.ViewAcctBalBtn);
+            this.Controls.Add(this.QuitBtn);
             this.Name = "MainForm";
             this.Text = "Main Form";
+            this.TransactionsGrpBox.ResumeLayout(false);
+            this.UsrConfigGrpBox.ResumeLayout(false);
+            this.LoginGrpBox.ResumeLayout(false);
+            this.LoginGrpBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button addUserBtn;
-        private System.Windows.Forms.Button addBankAccountBtn;
-        private System.Windows.Forms.Button quitBtn;
-        private System.Windows.Forms.Button addBucketBtn;
-        private System.Windows.Forms.Button addTransactionBtn;
+        private System.Windows.Forms.Button AddUserBtn;
+        private System.Windows.Forms.Button AddBankAccountBtn;
+        private System.Windows.Forms.Button QuitBtn;
+        private System.Windows.Forms.Button AddBucketBtn;
+        private System.Windows.Forms.Button AddTransactionBtn;
         private System.Windows.Forms.TextBox usernameTxtBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox passwordTxtBox;
-        private System.Windows.Forms.Button loginBtn;
+        private System.Windows.Forms.Button LoginBtn;
         private System.Windows.Forms.Label userLbl;
-        private System.Windows.Forms.Button addBankBtn;
-        private System.Windows.Forms.Button dbBackupBtn;
-        private System.Windows.Forms.Button makeDepositBtn;
-        private System.Windows.Forms.Button makeTransferBtn;
-        private System.Windows.Forms.Button makeWithdrawBtn;
+        private System.Windows.Forms.Button AddBankBtn;
+        private System.Windows.Forms.Button DbBackupBtn;
+        private System.Windows.Forms.Button MakeDepositBtn;
+        private System.Windows.Forms.Button MakeTransferBtn;
+        private System.Windows.Forms.Button MakeWithdrawBtn;
+        private System.Windows.Forms.Button ViewAcctBalBtn;
+        private System.Windows.Forms.GroupBox TransactionsGrpBox;
+        private System.Windows.Forms.GroupBox UsrConfigGrpBox;
+        private System.Windows.Forms.GroupBox LoginGrpBox;
     }
 }
 

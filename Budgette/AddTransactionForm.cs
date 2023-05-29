@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace Budgette
 {
+    // The problem here is that you can choose ANY account with a certain bank so there could be errors, you should only be allowed to choose from the combo box what is attached to the chosen bank!
     public partial class AddTransactionForm : Form
     {
         public string transType;
@@ -59,34 +60,6 @@ namespace Budgette
             }
         }
 
-        private void AddTransactionBtn_Click(object sender, EventArgs e)
-        {
-            List<string> idNumbers = new List<string> { "1000" };
-
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
-            con.Open();
-
-            SqlCommand command = new SqlCommand("Select TransactionId from tblTransaction order by TransactionId desc", con);
-            // int result = command.ExecuteNonQuery();
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                    idNumbers.Add(string.Format("{0}", reader["TransactionId"]));
-            }
-            con.Close();
-            int.TryParse(idNumbers[idNumbers.Count - 1], out int transactionId);
-            transactionId++;            
-
-            if (transType == "withdraw")
-                PerformWithdraw(transactionId);
-            else if (transType == "deposit")
-                PerformDeposit(transactionId);
-            else if (transType == "transfer")
-                PerformTransfer(transactionId);
-            else
-                Console.Write("Unknown Transfer initiated!");   
-        }        
-
         private void AddTransactionForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
@@ -126,6 +99,36 @@ namespace Budgette
             con.Close();
         }
 
+
+        private void AddTransactionBtn_Click(object sender, EventArgs e)
+        {
+            List<string> idNumbers = new List<string> { "1000" };
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand command = new SqlCommand("Select TransactionId from tblTransaction order by TransactionId desc", con);
+            // int result = command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                    idNumbers.Add(string.Format("{0}", reader["TransactionId"]));
+            }
+            con.Close();
+            int.TryParse(idNumbers[idNumbers.Count - 1], out int transactionId);
+            transactionId++;            
+
+            if (transType == "withdraw")
+                PerformWithdraw(transactionId);
+            else if (transType == "deposit")
+                PerformDeposit(transactionId);
+            else if (transType == "transfer")
+                PerformTransfer(transactionId);
+            else
+                Console.Write("Unknown Transfer initiated!");
+            this.Close();
+        }   
+        
         private bool PerformWithdraw(int transactionId)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
@@ -218,7 +221,6 @@ namespace Budgette
             }
 
             con.Close();
-            Debug.WriteLine("done");
             return true;
         }
 
@@ -292,12 +294,6 @@ namespace Budgette
             }
 
             con.Close();
-            return true;
-        }
-
-        private bool CompleteTransaction()
-        {
-
             return true;
         }
 

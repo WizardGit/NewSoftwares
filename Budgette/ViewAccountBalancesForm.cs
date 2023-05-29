@@ -39,9 +39,7 @@ namespace Budgette
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
-                {
                     AccountComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-                }
             }
 
             con.Close();

@@ -18,17 +18,20 @@ namespace Budgette
         {
             InitializeComponent();
         }
+        private void AddBucketForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
+            this.tblBucketTableAdapter.Fill(this.mainDatabaseDataSet.tblBucket);
+        }
 
         private void createBucketBtn_Click(object sender, EventArgs e)
         {
-            List<string> idNumbers = new List<string>();
-            idNumbers.Add("1000");
+            List<string> idNumbers = new List<string> { "1000" };
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
 
             SqlCommand command = new SqlCommand("Select BucketId from tblBucket order by BucketId desc", con);
-            // int result = command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
@@ -44,18 +47,12 @@ namespace Budgette
             SqlCommand cmd = new SqlCommand("insert into tblBucket values('" + bucketId + "', '" + balance + "', '" + ImpInfo.userId + "','" + nameTxtBox.Text + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
+            this.Close();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void AddBucketForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBucket' table. You can move, or remove it, as needed.
-            this.tblBucketTableAdapter.Fill(this.mainDatabaseDataSet.tblBucket);
-
         }
     }
 }

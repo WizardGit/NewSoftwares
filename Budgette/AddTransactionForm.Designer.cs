@@ -472,11 +472,11 @@
         private MainDatabaseDataSet mainDatabaseDataSet;
         private System.Windows.Forms.BindingSource tblTransactionBindingSource;
         private MainDatabaseDataSetTableAdapters.tblTransactionTableAdapter tblTransactionTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountIdFromDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accountIdToDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bucketIdFromDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bucketIdToDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bankIdDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn accountIdFromDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn accountIdToDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn bucketIdFromDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn bucketIdToDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn bankIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource tblTransactionBindingSource1;
         private System.Windows.Forms.ComboBox accountFromComboBox;
         private System.Windows.Forms.ComboBox bankToComboBox;

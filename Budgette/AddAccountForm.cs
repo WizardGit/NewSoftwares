@@ -39,8 +39,7 @@ namespace Budgette
 
         private void createAccountBtn_Click(object sender, EventArgs e)
         {
-            List<string> idNumbers = new List<string>();
-            idNumbers.Add("1000");
+            List<string> idNumbers = new List<string> { "1000" };
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
@@ -62,6 +61,7 @@ namespace Budgette
             SqlCommand cmd = new SqlCommand("insert into tblAccount values('" + accountId + "', '" + bankComboBox.Text + "','" + nameTxtBox.Text + "', '" + balance + "', '" + ImpInfo.userId + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
+            this.Close();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

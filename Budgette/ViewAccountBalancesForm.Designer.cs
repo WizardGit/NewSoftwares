@@ -145,9 +145,9 @@
             this.WithdrawnMonthTxt.AutoSize = true;
             this.WithdrawnMonthTxt.Location = new System.Drawing.Point(6, 52);
             this.WithdrawnMonthTxt.Name = "WithdrawnMonthTxt";
-            this.WithdrawnMonthTxt.Size = new System.Drawing.Size(149, 13);
+            this.WithdrawnMonthTxt.Size = new System.Drawing.Size(152, 13);
             this.WithdrawnMonthTxt.TabIndex = 8;
-            this.WithdrawnMonthTxt.Text = "Money Withdrawn This Month";
+            this.WithdrawnMonthTxt.Text = "Money Withdrawn This Month:";
             // 
             // label5
             // 

@@ -19,27 +19,25 @@ namespace Budgette
             InitializeComponent();
         }
 
-        private void cancelBtn_Click(object sender, EventArgs e)
+        private void AddBankForm_Load(object sender, EventArgs e)
         {
-            this.Close();
-        }
+            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBank' table. You can move, or remove it, as needed.
+            this.tblBankTableAdapter.Fill(this.mainDatabaseDataSet.tblBank);
+        }       
 
         private void createBankBtn_Click(object sender, EventArgs e)
         {
-            List<string> idNumbers = new List<string>();
-            idNumbers.Add("1000");
+            List<string> idNumbers = new List<string> { "1000" };
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
 
             SqlCommand command = new SqlCommand("Select BankId from tblBank order by BankId desc", con);
-            // int result = command.ExecuteNonQuery();
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
                     idNumbers.Add(string.Format("{0}", reader["BankId"]));
             }
-
 
             int.TryParse(idNumbers[idNumbers.Count - 1], out int BankId);
             BankId++;
@@ -47,13 +45,11 @@ namespace Budgette
             SqlCommand cmd = new SqlCommand("insert into tblBank values('" + BankId + "', '" + bankTxtBox.Text + "','" + ImpInfo.userId + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
+            this.Close();
         }
-
-        private void AddBankForm_Load(object sender, EventArgs e)
+        private void cancelBtn_Click(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblBank' table. You can move, or remove it, as needed.
-            this.tblBankTableAdapter.Fill(this.mainDatabaseDataSet.tblBank);
-
+            this.Close();
         }
     }
 }

@@ -40,7 +40,7 @@
             this.tableAdapterManager1 = new Budgette.MainDatabaseDataSetTableAdapters.TableAdapterManager();
             this.WithdrawnMonthTxt = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.WithdrawMonthTxt = new System.Windows.Forms.Label();
             this.DepositMonthTxt = new System.Windows.Forms.Label();
             this.tblAccountDataGridView = new System.Windows.Forms.DataGridView();
             this.mainDatabaseDataSet = new Budgette.MainDatabaseDataSet();
@@ -158,14 +158,14 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Money Deposited This Month: ";
             // 
-            // label6
+            // WithdrawMonthTxt
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(164, 52);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "--------------";
+            this.WithdrawMonthTxt.AutoSize = true;
+            this.WithdrawMonthTxt.Location = new System.Drawing.Point(164, 52);
+            this.WithdrawMonthTxt.Name = "WithdrawMonthTxt";
+            this.WithdrawMonthTxt.Size = new System.Drawing.Size(49, 13);
+            this.WithdrawMonthTxt.TabIndex = 10;
+            this.WithdrawMonthTxt.Text = "--------------";
             // 
             // DepositMonthTxt
             // 
@@ -241,7 +241,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.WithdrawnMonthTxt);
             this.groupBox1.Controls.Add(this.DepositMonthTxt);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.WithdrawMonthTxt);
             this.groupBox1.Location = new System.Drawing.Point(232, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(273, 83);
@@ -290,7 +290,7 @@
         private MainDatabaseDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
         private System.Windows.Forms.Label WithdrawnMonthTxt;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label WithdrawMonthTxt;
         private System.Windows.Forms.Label DepositMonthTxt;
         private MainDatabaseDataSetTableAdapters.tblAccountTableAdapter tblAccountTableAdapter;
         private System.Windows.Forms.DataGridView tblAccountDataGridView;

@@ -47,6 +47,14 @@ namespace Budgette
 
         private void GetAcctBtn_Click(object sender, EventArgs e)
         {
+            GetBalance();
+            GetMonthDeposit();
+            GetMonthWithdraw();
+            Debug.WriteLine("done");
+        }
+
+        private void GetBalance()
+        {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
 
@@ -60,7 +68,44 @@ namespace Budgette
             DisplayBalanceTxt.Text = strAccountBalance;
 
             con.Close();
-            Debug.WriteLine("done");
+        }
+
+        private void GetMonthDeposit()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select balance from tblTransaction where month(Date) = '" + DateTime.Today.Month + "' and BankTo = '" + BankComboBox.Text + "' and AccountTo = '" + AccountComboBox.Text + "'", con);
+            decimal decMonthBalance = 0;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    Decimal.TryParse(string.Format("{0}", reader["Balance"]), out decimal tempBal);
+                    decMonthBalance += tempBal;
+                }                    
+            }
+            DepositMonthTxt.Text = decMonthBalance.ToString();
+            con.Close();
+        }
+
+        private void GetMonthWithdraw()
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select balance from tblTransaction where month(Date) = '" + DateTime.Today.Month + "' and BankFrom = '" + BankComboBox.Text + "' and AccountFrom = '" + AccountComboBox.Text + "'", con);
+            decimal decMonthBalance = 0;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    Decimal.TryParse(string.Format("{0}", reader["Balance"]), out decimal tempBal);
+                    decMonthBalance += tempBal;
+                }
+            }
+            WithdrawMonthTxt.Text = decMonthBalance.ToString();
+            con.Close();
         }
 
         private void RtnBtn_Click(object sender, EventArgs e)

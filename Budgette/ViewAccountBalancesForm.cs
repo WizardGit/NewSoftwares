@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,14 +13,14 @@ using System.Windows.Forms;
 
 namespace Budgette
 {
-    public partial class AddAccountForm : Form
+    public partial class ViewAccountBalancesForm : Form
     {
-        public AddAccountForm()
+        public ViewAccountBalancesForm()
         {
             InitializeComponent();
         }
 
-        private void AddAccount_Load(object sender, EventArgs e)
+        private void ViewAccountBalancesForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'mainDatabaseDataSet.tblAccount' table. You can move, or remove it, as needed.
             this.tblAccountTableAdapter.Fill(this.mainDatabaseDataSet.tblAccount);
@@ -31,40 +32,40 @@ namespace Budgette
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
-                    bankComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                    BankComboBox.Items.Add(string.Format("{0}", reader["Name"]));
             }
 
-            con.Close();
-        }
-
-        private void createAccountBtn_Click(object sender, EventArgs e)
-        {
-            List<string> idNumbers = new List<string>();
-            idNumbers.Add("1000");
-
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
-            con.Open();
-
-            SqlCommand command = new SqlCommand("Select AccountId from tblAccount order by AccountId desc", con);
-            // int result = command.ExecuteNonQuery();
+            command = new SqlCommand("Select Name from tblAccount where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
-                    idNumbers.Add(string.Format("{0}", reader["AccountId"]));
+                {
+                    AccountComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+                }
             }
 
-
-            int.TryParse(idNumbers[idNumbers.Count - 1], out int accountId);
-            accountId++;
-
-            decimal.TryParse(balanceTxtBox.Text, out decimal balance);
-
-            SqlCommand cmd = new SqlCommand("insert into tblAccount values('" + accountId + "', '" + bankComboBox.Text + "','" + nameTxtBox.Text + "', '" + balance + "', '" + ImpInfo.userId + "')", con);
-            cmd.ExecuteNonQuery();
             con.Close();
+        }        
+
+        private void GetAcctBtn_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select balance from tblAccount where Bank = '" + BankComboBox.Text + "' and Name = '" + AccountComboBox.Text + "'", con);
+            string strAccountBalance = "";
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                    strAccountBalance = string.Format("{0}", reader["Balance"]);
+            }
+            DisplayBalanceTxt.Text = strAccountBalance;
+
+            con.Close();
+            Debug.WriteLine("done");
         }
 
-        private void cancelBtn_Click(object sender, EventArgs e)
+        private void RtnBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }

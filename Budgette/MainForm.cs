@@ -112,6 +112,12 @@ namespace Budgette
             AddTransactionForm addTransaction = new AddTransactionForm("deposit");
             addTransaction.Show();
         }
+
+        private void ViewAcctBalBtn_Click(object sender, EventArgs e)
+        {
+            ViewAccountBalancesForm viewAccountBalances = new ViewAccountBalancesForm();
+            viewAccountBalances.Show();
+        }
     }
     public static class ImpInfo
     {

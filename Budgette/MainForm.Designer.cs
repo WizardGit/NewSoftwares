@@ -212,6 +212,7 @@
             this.ViewAcctBalBtn.TabIndex = 16;
             this.ViewAcctBalBtn.Text = "View Account Balances";
             this.ViewAcctBalBtn.UseVisualStyleBackColor = true;
+            this.ViewAcctBalBtn.Click += new System.EventHandler(this.ViewAcctBalBtn_Click);
             // 
             // TransactionsGrpBox
             // 

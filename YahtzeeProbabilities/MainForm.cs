@@ -18,6 +18,7 @@ namespace YahtzeeProbabilities
         public MainForm()
         {
             InitializeComponent();
+            Debug.Write(Combination(5,3));
         }  
 
         //2 out of 2 is (1+0)
@@ -39,22 +40,24 @@ namespace YahtzeeProbabilities
         //Number of combinations that "selectDice" dice can be selected with selectDice particular number out of "numDice" dice
         // (selectDice out of numDice)
         // i.e. how many ways can there be two dice with selectDice number 1 when you have three dice
-        private double NumCombin(int selectDice, int numDice)
+        //combination formula
+        private double Combination(int n, int r)
         {
-            if ((numDice < selectDice) || (numDice < 0) || (selectDice < 0))
+            if ((n < r) || (n < 0) || (r < 0))
                 throw new Exception("Exception in function NumCombin");
-
-            double topsum = 1;
-            double bottomsum = 1;
-            for (int i = (numDice - selectDice); i > 0; i--)
+            //Top of fraction
+            double numerator = 1;
+            //Bottom of fraction
+            double denominator = 1;
+            for (int i = (n - r); i > 0; i--)
             {
-                topsum *= (numDice + 1 - i);
-                bottomsum *= i;
+                numerator *= (n + 1 - i);
+                denominator *= i;
 
                 //numbers get way too big at times!
             }
             
-            return topsum / bottomsum;
+            return numerator / denominator;
         }
 
         /// <summary>
@@ -70,7 +73,7 @@ namespace YahtzeeProbabilities
             if ((numDice < selectDice) || (numDice < 0) || (selectDice < 0) || (sidedDice < 0))
                 throw new Exception("Exception in function OutOf");            
             
-            double numerator = Math.Pow(sidedDice - 1, numDice - selectDice) * NumCombin(selectDice, numDice);
+            double numerator = Math.Pow(sidedDice - 1, numDice - selectDice) * Combination(selectDice, numDice);
             double denominator = Math.Pow(sidedDice, numDice);
 
             return numerator / denominator;
@@ -109,7 +112,7 @@ namespace YahtzeeProbabilities
             int[] numbers = { 1, 2, 3, 4, 5, 6 };
             int num = 6;
 
-            double maxSets = NumCombin(amountInSet, 6);
+            double maxSets = Combination(amountInSet, 6);
 
             if (inARow <= (num / (num - amountInSet + 1)))
             {
@@ -145,7 +148,7 @@ namespace YahtzeeProbabilities
             //Deal with Sets
             double sets = NumsInRow(selectDice);
             //Deal with repeated elemnts
-            double ele = NumCombin(numDice - selectDice + 1, numDice);
+            double ele = Combination(numDice - selectDice + 1, numDice);
             //Deal with distinct elements
             double dist = Factorial(selectDice - 1);
             double multisets = 0;
@@ -262,7 +265,7 @@ namespace YahtzeeProbabilities
             int.TryParse(textBox1.Text, out a);
             int.TryParse(textBox2.Text, out b);
             int.TryParse(textBoxRolls.Text, out int currRoll);
-            templbl.Text = NumCombin(a,b).ToString() + "%";
+            templbl.Text = Combination(a,b).ToString() + "%";
         }
 
         private double UltimateProbAtLeast(int numRolls, int currRoll, int selectDice, int numDice)
@@ -320,6 +323,9 @@ namespace YahtzeeProbabilities
 
         private void calcProbsBtn_Click(object sender, EventArgs e)
         {
+
+            
+
             // Index 0 is empty/doesn't represent anything in both of these arrays
             int[] selectNum = new int[7];
             int[] haveNum = new int[] { 0,0,0,0,0,0,0 };

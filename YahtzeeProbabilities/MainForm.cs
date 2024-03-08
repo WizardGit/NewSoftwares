@@ -22,7 +22,7 @@ namespace YahtzeeProbabilities
             //Console.WriteLine(prob.Combination(5,3));
             //Debug.Write("\n");
             //Console.WriteLine(prob.OneRoll(6, 5, 5, 6));
-            Console.WriteLine(prob.Yahtzee());
+            //Console.WriteLine(prob.Yahtzee());
             //prob.OneRoll(6, 0, 0);
             //prob.OneRoll(6, 5, 5);
             //prob.OneRoll(6, 5, 4);
@@ -35,8 +35,6 @@ namespace YahtzeeProbabilities
 
         }  
 
-       
-
         private void calbut2_Click(object sender, EventArgs e)
         {
             //int a = 0;
@@ -46,8 +44,6 @@ namespace YahtzeeProbabilities
             //int.TryParse(textBoxRolls.Text, out int currRoll);
             //templbl.Text = Combination(a,b).ToString() + "%";
         }
-
-       
 
         private void calcProbsBtn_Click(object sender, EventArgs e)
         {
@@ -76,7 +72,27 @@ namespace YahtzeeProbabilities
                 int.TryParse(numFourTxtBox.Text, out haveNum[4]);
                 int.TryParse(numFiveTxtBox.Text, out haveNum[5]);
                 int.TryParse(numSixTxtBox.Text, out haveNum[6]);
-            }           
+            }
+            probYTxtBox.Text = Math.Round(Yahtzee(currRoll), 2).ToString() + "%";
+        }
+
+        /// <summary>
+        /// Calculates likelihood of yahtzee over three rolls
+        /// </summary>
+        /// <returns>A double representing the percentage chance of a yahtzee over three rolls</returns>
+        public double Yahtzee(int numRolls)
+        {
+            double result = 0.0;
+
+            Probability prob = new Probability();
+
+            for (int roll = numRolls; roll > 0; roll--)
+            {
+                prob.Recurse(1.0, ref result, roll, 1, 6, 5, 5, 6, 5);
+            }
+
+            //Console.WriteLine("Yahtzee is returning " + result);
+            return result * 100;
         }
     }
 }

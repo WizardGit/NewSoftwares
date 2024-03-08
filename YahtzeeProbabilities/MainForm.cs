@@ -22,7 +22,7 @@ namespace YahtzeeProbabilities
             //Console.WriteLine(prob.Combination(5,3));
             //Debug.Write("\n");
             //Console.WriteLine(prob.OneRoll(6, 5, 5, 6));
-            //Console.WriteLine(prob.Yahtzee());
+            Console.WriteLine(prob.Yahtzee());
             //prob.OneRoll(6, 0, 0);
             //prob.OneRoll(6, 5, 5);
             //prob.OneRoll(6, 5, 4);
@@ -30,8 +30,8 @@ namespace YahtzeeProbabilities
             //prob.OneRoll(6, 5, 2);
             //prob.OneRoll(6, 5, 2);
             //prob.OneRoll(6, 3, 3);
-            prob.OneRoll(6, 5, 1);
-            prob.OneRoll(6, 4, 4);
+            //prob.OneRoll(6, 5, 1);
+            //prob.OneRoll(6, 4, 4);
 
         }  
 

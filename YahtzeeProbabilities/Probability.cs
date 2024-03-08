@@ -51,32 +51,20 @@ namespace YahtzeeProbabilities
 
             result = Combination(numDice, numWant) * Math.Pow(1 / a, c);
 
-            //if (c < (b/2))
-            //{
-                double temp = 1.0;
-                double z = 1.0;
-                int numZ = 0;
-                for (int i = 0; i < b - c; i++)
+            double z = 1.0;
+            int numZ = 0;
+            for (int i = 0; i < b - c; i++)
+            {
+                if ((c != 0.0) && (numZ >= c))
                 {
-                    if (numZ >= c)
-                    {
-                        numZ = 0;
-                        z++;
-                        if (z >= a)
-                            throw new Exception("One Roll is having trouble setting up probability!");
-                    }
-                    result *= (a - z) / a;
-                Console.WriteLine("we are multiplying a" + a + " z" + z);
-                    numZ++;
+                    numZ = 0;
+                    z++;
+                    if (z >= a)
+                        throw new Exception("One Roll is having trouble setting up probability!");
                 }
-            //}
-            //else
-            //{
-            //    result *= Math.Pow((a - 1) / a, b - c);
-            //}
-            
-            
-            //Debug.Write("OneRoll is returning " + result);
+                result *= (a - z) / a;
+                numZ++;
+            }
             Console.WriteLine("OneRoll is returning " + result);
             //How much extra on double to return?
             return result;
@@ -86,7 +74,7 @@ namespace YahtzeeProbabilities
         {
             double result = 0.0;
 
-            Recurse(1.0, ref result, 2, 1, 6, 5, 5, 6);
+            Recurse(1.0, ref result, 3, 1, 6, 5, 5, 6);
 
             Console.WriteLine("Yahtzee is returning " + result);
             return result;

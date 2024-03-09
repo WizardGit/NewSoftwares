@@ -22,7 +22,8 @@ namespace YahtzeeProbabilities
             //Console.WriteLine(prob.Combination(5,3));
             //Debug.Write("\n");
             //Console.WriteLine(prob.OneRoll(6, 5, 5, 6));
-            //Console.WriteLine(prob.Yahtzee());
+            //Yahtzee(3);
+            Simple();
             //prob.OneRoll(6, 0, 0);
             //prob.OneRoll(6, 5, 5);
             //prob.OneRoll(6, 5, 4);
@@ -47,7 +48,7 @@ namespace YahtzeeProbabilities
 
         private void calcProbsBtn_Click(object sender, EventArgs e)
         {
-            
+            Probability prob = new Probability();
 
 
             // Index 0 is empty/doesn't represent anything in both of these arrays
@@ -73,26 +74,44 @@ namespace YahtzeeProbabilities
                 int.TryParse(numFiveTxtBox.Text, out haveNum[5]);
                 int.TryParse(numSixTxtBox.Text, out haveNum[6]);
             }
-            probYTxtBox.Text = Math.Round(Yahtzee(currRoll), 2).ToString() + "%";
-        }
+            probYTxtBox.Text = Math.Round(prob.PercentOfAKind(currRoll, 5, 6), 2).ToString() + "%";
+            //perform calculations 
+        }  
 
-        /// <summary>
-        /// Calculates likelihood of yahtzee over three rolls
-        /// </summary>
-        /// <returns>A double representing the percentage chance of a yahtzee over three rolls</returns>
-        public double Yahtzee(int numRolls)
+        public void Simple()
         {
-            double result = 0.0;
-
             Probability prob = new Probability();
+            double result = 0.0;
+            //Console.WriteLine(Chicken(3, 5));
+            //Console.WriteLine(Chicken(3, 4));
+            //Console.WriteLine(Chicken(3, 3));
+            //Console.WriteLine(Chicken(3, 2));
+            //Console.WriteLine(Chicken(3, 1));
+            //Console.WriteLine(Chicken(3, 0));
+            //Console.WriteLine(Yahtzee(2));
+            //Console.WriteLine(Yahtzee(3));
+            //Console.WriteLine(Chicken(3, 5, 6));
+            //Console.WriteLine(prob.OneRoll(6, 5, 5) * 600);
+            //Console.WriteLine(prob.OneRoll(6, 5, 4) * 600);
+            //Console.WriteLine(prob.OneRoll(6, 5, 3) * 600);
+            //Console.WriteLine(prob.OneRoll(6, 5, 2) * 600); //reported wrong
+            //Console.WriteLine(prob.OneRoll(6, 5, 1) * 600);
+            //Console.WriteLine(Chicken(2, 5,6));
+            //Console.WriteLine(Chicken(1, 4, 6));
+            //Console.WriteLine(Chicken(2, 4, 6));
+            //Console.WriteLine(Chicken(2, 3, 6));
+            //Console.WriteLine(Chicken(3, 4, 6));
+            //Console.WriteLine(Chicken(3, 3, 6));
+            //Console.WriteLine(Chicken(3, 5,6));
+            //Console.WriteLine(Chicken(2, 5, 1));
+            //Console.WriteLine(Chicken(3, 5, 1));
 
-            for (int roll = numRolls; roll > 0; roll--)
-            {
-                prob.Recurse(1.0, ref result, roll, 1, 6, 5, 5, 6, 5);
-            }
-
-            //Console.WriteLine("Yahtzee is returning " + result);
-            return result * 100;
+            Console.WriteLine(prob.PercentOfAKind(3,5,6));
+            Console.WriteLine(prob.PercentOfAKind(3, 4, 6));
+            Console.WriteLine(prob.PercentOfAKind(3, 3, 6));
+            Console.WriteLine(prob.PercentOfAKind(3, 2, 6));
+            Console.WriteLine(prob.PercentOfAKind(3, 1, 6));
+            Console.WriteLine(prob.PercentOfAKind(3, 0, 6));
         }
     }
 }

@@ -162,9 +162,9 @@ namespace YahtzeeProbabilities
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(36, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 13);
+            this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Roll about to do:";
+            this.label3.Text = "Rolls left to do:";
             // 
             // currRollComboBox
             // 

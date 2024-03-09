@@ -29,7 +29,7 @@ namespace YahtzeeProbabilities
                 //possibly could try dividing as we go!
             }
             result = numerator / denominator;
-            Console.WriteLine("Combination is returning " + result);
+            //Console.WriteLine("Combination is returning " + result);
             return result;
         }
 
@@ -67,7 +67,7 @@ namespace YahtzeeProbabilities
                 result *= (a - z) / a;
                 numZ++;
             }
-            Console.WriteLine("OneRoll is returning " + result);
+            //Console.WriteLine("OneRoll is returning " + result);
             //How much extra on double to return?
             return result;
         }
@@ -86,8 +86,8 @@ namespace YahtzeeProbabilities
         /// <param name="allDice">absolute number of dice that you have, default to 5</param>
         public void Recurse(double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int diceSides, int numDice, int numWant, int numWork, int allDice)
         {
-            Console.WriteLine("We got " + numDice + " Dice!");
-            if ((numDice == 0) || (numRolls <= 0))
+            //Console.WriteLine("We got " + numDice + " Dice!");
+            if ((numWant == 0) || (numRolls <= 0))
             {
                 ultimateSumProb += 0.0;
                 return;
@@ -96,20 +96,33 @@ namespace YahtzeeProbabilities
             if (currRoll == numRolls)
             {
                 double temp = numWork * (multProb * OneRoll(diceSides, numDice, numWant, allDice - numDice));
-                Console.WriteLine("Temp is " + temp);
+                //Console.WriteLine("Temp is " + temp);
                 ultimateSumProb = ultimateSumProb + temp;
                 return;
             }
 
-            for (int i = numDice; i >= 0; i--)
+            for (int i = numWant; i >= 0; i--)
             {
-                Console.WriteLine("We are on Dice " + i);
+                //Console.WriteLine("We are on Dice " + i);
                 //how is numWant related to the number of dice we are given
                 //let's assume we always want to max out for now!
                 if ((i != 0) || (numDice != allDice))
-                    Recurse(multProb * OneRoll(diceSides, numDice, i, allDice - numDice), ref ultimateSumProb, numRolls, currRoll + 1, diceSides, numDice - i, numDice - i, numWork, allDice);                
+                    Recurse(multProb * OneRoll(diceSides, numDice, i, allDice - numDice), ref ultimateSumProb, numRolls, currRoll + 1, diceSides, numDice - i, numWant - i, numWork, allDice);                
             }
             return;
+        }
+
+        public double PercentOfAKind(int numRolls, int numWant, int numWork)
+        {
+            double result = 0.0;
+
+            for (int roll = numRolls; roll > 0; roll--)
+            {
+                Recurse(1.0, ref result, roll, 1, 6, 5, numWant, numWork, 5);
+            }
+
+            //Console.WriteLine("PercentOfAKind is returning " + result);
+            return result * 100;
         }
     }
 }

@@ -12,23 +12,40 @@ namespace YahtzeeProbabilities
         public double Combination(int n, int r)
         {
             if ((n < r) || (n < 0) || (r < 0))
-                throw new Exception("Exception in function NumCombin");
+                throw new Exception("Exception in function Combination");
+
+            double result = 1.0;
+
+            int startFrom;
+
+            if (r > (n-r))
+                startFrom = n - r;
+            else
+                startFrom = r;
+
+            for (int i = startFrom; i > 0; i--, n--)
+            {
+                result *= (double)n / (double)i;
+            }
+            //Console.WriteLine("CombinationE is returning " + result);
+            return result;
+        }
+
+        public double Permutation(int n, int r)
+        {
+            if ((n < r) || (n < 0) || (r < 0))
+                throw new Exception("Exception in function Permutation");
 
             double result;
             //Top of fraction
             double numerator = 1.0;
-            //Bottom of fraction
-            double denominator = 1.0;
+            //denominator cancels out the (n-r)! part of n!
 
-            for (int i = (n - r); i > 0; i--)
+            for (int i = n; i > (n - r); i--)
             {
-                numerator *= (n + 1 - i);
-                denominator *= i;
-
-                //numbers get way too big at times!
-                //possibly could try dividing as we go!
+                numerator *= i;
             }
-            result = numerator / denominator;
+            result = numerator;
             //Console.WriteLine("Combination is returning " + result);
             return result;
         }

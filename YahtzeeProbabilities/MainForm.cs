@@ -93,8 +93,8 @@ namespace YahtzeeProbabilities
             //Console.WriteLine(Chicken(3, 5, 6));
             //Console.WriteLine(prob.OneRoll(6, 5, 5) * 600);
             //Console.WriteLine(prob.OneRoll(6, 5, 4) * 600);
-            //Console.WriteLine(prob.OneRoll(6, 5, 3) * 600);
-            //Console.WriteLine(prob.OneRoll(6, 5, 2) * 600); //reported wrong
+            Console.WriteLine(prob.OneRoll(6, 5, 3) * 600);
+            Console.WriteLine(prob.OneRoll(6, 5, 2) * 600); //reported wrong
             //Console.WriteLine(prob.OneRoll(6, 5, 1) * 600);
             //Console.WriteLine(Chicken(2, 5,6));
             //Console.WriteLine(Chicken(1, 4, 6));
@@ -105,13 +105,15 @@ namespace YahtzeeProbabilities
             //Console.WriteLine(Chicken(3, 5,6));
             //Console.WriteLine(Chicken(2, 5, 1));
             //Console.WriteLine(Chicken(3, 5, 1));
+            //Console.WriteLine(prob.Permutation(100, 10));
+            //Console.WriteLine(prob.Combination(100, 50));
 
-            Console.WriteLine(prob.PercentOfAKind(3,5,6));
-            Console.WriteLine(prob.PercentOfAKind(3, 4, 6));
-            Console.WriteLine(prob.PercentOfAKind(3, 3, 6));
-            Console.WriteLine(prob.PercentOfAKind(3, 2, 6));
-            Console.WriteLine(prob.PercentOfAKind(3, 1, 6));
-            Console.WriteLine(prob.PercentOfAKind(3, 0, 6));
+            //Console.WriteLine(prob.PercentOfAKind(3,5,6));
+            //Console.WriteLine(prob.PercentOfAKind(3, 4, 6));
+            //Console.WriteLine(prob.PercentOfAKind(3, 3, 6));
+            //Console.WriteLine(prob.PercentOfAKind(3, 2, 6));
+            //Console.WriteLine(prob.PercentOfAKind(3, 1, 6));
+            //Console.WriteLine(prob.PercentOfAKind(3, 0, 6));
         }
     }
 }

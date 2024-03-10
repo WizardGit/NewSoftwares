@@ -136,7 +136,8 @@ namespace YahtzeeProbabilities
             int numZ = 0;
             for (int i = 0; i < b - c; i++)
             {
-                if ((c != 0.0) && (numZ >= (numWant+diceBefore)))
+                //took out of this if clause: (c != 0.0) && 
+                if ((numZ >= (numWant+diceBefore)))
                 {
                     numZ = 0;
                     z++;
@@ -166,7 +167,7 @@ namespace YahtzeeProbabilities
         public void Recurse(double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int diceSides, int numDice, int numWant, int numWork, int allDice)
         {
             //Console.WriteLine("We got " + numDice + " Dice!");
-            if ((numWant == 0) || (numRolls <= 0))
+            if ((numDice == 0) || (numRolls <= 0))
             {
                 ultimateSumProb += 0.0;
                 return;
@@ -197,7 +198,16 @@ namespace YahtzeeProbabilities
 
             for (int roll = numRolls; roll > 0; roll--)
             {
-                Recurse(1.0, ref result, roll, 1, 6, 5, numWant, numWork, 5);
+                if ((roll < numRolls) && (numWant == 1))
+                {
+                    //Do Nothing 
+                    //we don't do the cases of not getting a dice in first round
+                    //This is because we are guaranteed to at least get 1 number in the first round which immediately puts us into the first case again
+                }
+                else
+                {
+                    Recurse(1.0, ref result, roll, 1, 6, 5, numWant, numWork, 5);
+                }
             }
 
             //Console.WriteLine("PercentOfAKind is returning " + result);

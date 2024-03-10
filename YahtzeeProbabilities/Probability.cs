@@ -36,17 +36,73 @@ namespace YahtzeeProbabilities
             if ((n < r) || (n < 0) || (r < 0))
                 throw new Exception("Exception in function Permutation");
 
-            double result;
-            //Top of fraction
-            double numerator = 1.0;
-            //denominator cancels out the (n-r)! part of n!
-
+            double result = 1.0;
+            //Note that the denominator of (n-r)! cancels out that part of the n!, so we only need n to (n-r) of the !
             for (int i = n; i > (n - r); i--)
             {
-                numerator *= i;
+                result *= i;
             }
-            result = numerator;
             //Console.WriteLine("Combination is returning " + result);
+            return result;
+        }
+
+        public double XSets(int diceSides, int numDice, int numWant, int setNum, int diceBefore = 0)
+        {
+            double numSets = Math.Floor((double)numDice / (double)numWant);
+            //Perform A1/A3
+            //Needs more testing!
+            double a = (double)diceSides;
+            double b = (double)numDice;
+            double c = (double)numWant;
+
+            //perform A2
+            //We've already done a set, 
+            double result = 1.0;
+            int currentSet = setNum;
+            int setsFinished = setNum - 1;
+
+            //look this logic over again
+            if ((c > 1.0) || (diceBefore > 0))
+                result *= Combination(numDice, numWant);
+
+            //In this loop, i is taking the place of sets finished - looping through them per say...
+            for (int i = 1; i < setNum; i++)
+            {
+                result *= diceSides - i;
+                result *= Combination(numDice - (i * numWant), numWant);
+            }
+
+            int diceLeft = numDice - (setNum * numWant);
+            int nextDiceNum = diceSides - setNum;
+            for (int i = 0; i < diceLeft; i++, nextDiceNum--)
+            {
+                //Do we need if clause?
+                result *= nextDiceNum;
+                //I'm thinking this might just always be 1?
+                //result *= Combination((numDice - (currentSet * numWant)), 1);
+            }
+            //But this is wrong because we count each of the two pairs twice, so let's divide by how much we overcount
+            //In reality the hardcoded 2 should be replaced with the number of pairs that we have!
+            result /= Permutation((int)setNum, (int)setNum);
+            //Divide by all of dice
+            result /= Math.Pow(a, b);
+
+            return result;
+
+            //Theoretically, now,all we need to do is just loop and add up set 1 prob + set 2 prob + set 3 prob + etc
+        }
+
+        
+        public double PairRoll(int diceSides, int numDice, int numWant, int diceBefore = 0)
+        {
+
+            double numSets = Math.Floor((double)numDice / (double)numWant);
+            double result = 0.0;
+            for (int i = 1; i <= numSets; i++)
+            {
+                result += XSets(diceSides, numDice, numWant, i);
+            }           
+
             return result;
         }
 
@@ -62,6 +118,12 @@ namespace YahtzeeProbabilities
         {          
             //Needs more testing!
             double result;
+
+            if ((numWant > 1) && ((double)numDice / (double)numWant >= 2))
+            {
+                return PairRoll(diceSides, numDice, numWant);
+            }
+
             double a = (double)diceSides;
             double b = (double)numDice;
             double c = (double)numWant;

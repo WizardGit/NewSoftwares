@@ -84,7 +84,7 @@ namespace YahtzeeProbabilities
             double result = 0.0;
             //Console.WriteLine(Yahtzee(2));
             //Console.WriteLine(Yahtzee(3));
-            
+
             //Console.WriteLine(prob.PairRoll(6,5,2) * 600);           
             //Console.WriteLine(prob.Permutation(100, 10));
             //Console.WriteLine(prob.Combination(100, 50));
@@ -96,16 +96,22 @@ namespace YahtzeeProbabilities
 
             //Console.WriteLine(prob.PercentOfAKind(3, 5, 6));
 
-
-            //Are currently Working!            
-            Console.WriteLine(prob.PercentOfAKind(1, 5, 6));
-            Console.WriteLine(prob.PercentOfAKind(1, 4, 6));
-            Console.WriteLine(prob.PercentOfAKind(1, 3, 6));
-            Console.WriteLine(prob.PercentOfAKind(1, 2, 6));
-            Console.WriteLine(prob.PercentOfAKind(1, 1, 6));
-            Console.WriteLine(prob.PercentOfAKind(2, 1, 6));
-            Console.WriteLine(prob.PercentOfAKind(3, 1, 6));
-            Console.WriteLine(prob.PercentOfAKind(5, 1, 6));
+            
+            //Console.WriteLine(prob.PercentOfAKind(2, 5, 6));
+            //Console.WriteLine(prob.PercentOfAKind(2, 4, 6));
+            //Console.WriteLine(prob.PercentOfAKind(2, 3, 6));
+            //Console.WriteLine(prob.PercentOfAKind(3, 5, 6));
+            Brute brute = new Brute();
+            brute.execute();
+            //Are currently Working!                
+            //Console.WriteLine(prob.PercentOfAKind(1, 5, 6));
+            //Console.WriteLine(prob.PercentOfAKind(1, 4, 6));
+            //Console.WriteLine(prob.PercentOfAKind(1, 3, 6));
+            //Console.WriteLine(prob.PercentOfAKind(1, 2, 6));
+            //Console.WriteLine(prob.PercentOfAKind(1, 1, 6));
+            //Console.WriteLine(prob.PercentOfAKind(2, 1, 6));
+            //Console.WriteLine(prob.PercentOfAKind(3, 1, 6));
+            //Console.WriteLine(prob.PercentOfAKind(5, 1, 6));
             //We can work on probability of 0 later - it's impossible to get 0 of the six dice - but it is possible to get 0 if we only want less than six
             //I guess this means we are broken when we only care about 5 of the 6 
         }

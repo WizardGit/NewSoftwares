@@ -46,6 +46,53 @@ namespace YahtzeeProbabilities
             return result;
         }
 
+        /// <summary>
+        /// Returns the probability of getting numWant of one specific number out of numDice
+        /// </summary>
+        /// <param name="diceSides">Number of sides on the dice</param>
+        /// <param name="numDice">Number of dice we are given</param>
+        /// <param name="numWant">Number of dice that we want to be our specific number</param>
+        /// <param name="numWork">Number of different dice that are part of the specific number(s)</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public double OfASpecificNumbers(int diceSides, int numDice, int numWant, int numWork = 1)
+        {
+            if (numWant > numDice)
+                throw new Exception("OfASpecificNumbers: numWant is more than numDice");
+            if (numWork > diceSides)
+                throw new Exception("OfASpecificNumbers: numWork is more than diceSides");
+
+            double a = (double)diceSides;
+            double d = (double)numWork; 
+
+            // How many ways are there to arrange our numWant dice across our numDice dice
+            double result = Combination(numDice, numWant);
+            // Any of numWork numbers can be on a dice and we want numWant dice of any of those numbers
+            result *= Math.Pow(d / a, numWant);
+            // Each dice that is not the specific number can any of the dicesides-1 other numbers
+            // We need to raise that number th the power of the number of dice we have left that will not be the specific number
+            result *= Math.Pow((a - d) / a, numDice - numWant);
+            // Each dice has diceSides choices for numbers, so we just need to divide by diceSides to the numDice power - done in the above steps
+            return result;
+        }
+
+        //I want x of b specific number(s)
+        //I want x of a kind where b specific number(s) count
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="diceSides"></param>
+        /// <param name="numDice"></param>
+        /// <returns></returns>
+        public double AofaB(int a, int b, int diceSides, int numDice)
+        {
+            return b * OfASpecificNumbers(diceSides, numDice, a);
+        }
+
         public double XSets(int diceSides, int numDice, int numWant, int setNum, int diceBefore = 0)
         {
             double numSets = Math.Floor((double)numDice / (double)numWant);
@@ -57,7 +104,8 @@ namespace YahtzeeProbabilities
 
             //perform A2
             //We've already done a set, 
-            double result = 1.0;
+            //result should be 1.0 but we're multiplying by what should be numwork (6 in our case rn, should be changed later!)
+            double result = 6.0;
             int currentSet = setNum;
             int setsFinished = setNum - 1;
 
@@ -102,8 +150,8 @@ namespace YahtzeeProbabilities
             {
                 result += XSets(diceSides, numDice, numWant, i);
             }           
-
-            return result;
+            //because we are doing our multiplation by 6, we should leave it out for later
+            return result / 6;
         }
 
         /// <summary>
@@ -167,27 +215,39 @@ namespace YahtzeeProbabilities
         public void Recurse(double multProb, ref double ultimateSumProb, int numRolls, int currRoll, int diceSides, int numDice, int numWant, int numWork, int allDice)
         {
             //Console.WriteLine("We got " + numDice + " Dice!");
-            if ((numDice == 0) || (numRolls <= 0))
+            if (numDice == 0)
             {
-                ultimateSumProb += 0.0;
+                double temp = numWork * multProb;
+                Console.WriteLine("TempNumWork0Dice is " + temp);
+                ultimateSumProb = ultimateSumProb + temp;
                 return;
+            }
+            if (numRolls <= 0)
+            {
+                throw new Exception("Recurse: No rolls left!");
             }
 
             if (currRoll == numRolls)
             {
-                double temp = numWork * (multProb * OneRoll(diceSides, numDice, numWant, allDice - numDice));
-                //Console.WriteLine("Temp is " + temp);
+                double temp = OneRoll(diceSides, numDice, numWant, allDice - numDice);
+                Console.WriteLine("TempBefore is " + temp);
+                temp *= numWork * multProb;
+                Console.WriteLine("TempNumWork is " + temp);
                 ultimateSumProb = ultimateSumProb + temp;
                 return;
             }
 
             for (int i = numWant; i >= 0; i--)
             {
-                //Console.WriteLine("We are on Dice " + i);
+                Console.WriteLine("We are on Roll " + currRoll + " and are on Dice " + i);
                 //how is numWant related to the number of dice we are given
                 //let's assume we always want to max out for now!
                 if ((i != 0) || (numDice != allDice))
-                    Recurse(multProb * OneRoll(diceSides, numDice, i, allDice - numDice), ref ultimateSumProb, numRolls, currRoll + 1, diceSides, numDice - i, numWant - i, numWork, allDice);                
+                {
+                    double temp = OneRoll(diceSides, numDice, i, allDice - numDice);
+                    Console.WriteLine(" " + i + " out of " + numDice + " is " + temp);
+                    Recurse(multProb * temp, ref ultimateSumProb, numRolls, currRoll + 1, diceSides, numDice - i, numWant - i, numWork, allDice);
+                }                                  
             }
             return;
         }
@@ -196,19 +256,19 @@ namespace YahtzeeProbabilities
         {
             double result = 0.0;
 
-            for (int roll = numRolls; roll > 0; roll--)
-            {
-                if ((roll < numRolls) && (numWant == 1))
-                {
-                    //Do Nothing 
-                    //we don't do the cases of not getting a dice in first round
-                    //This is because we are guaranteed to at least get 1 number in the first round which immediately puts us into the first case again
-                }
-                else
-                {
-                    Recurse(1.0, ref result, roll, 1, 6, 5, numWant, numWork, 5);
-                }
-            }
+            //for (int roll = numRolls; roll > 0; roll--)
+            //{
+            //    if ((roll < numRolls) && (numWant == 1))
+            //    {
+            //        //Do Nothing 
+            //        //we don't do the cases of not getting a dice in first round
+            //        //This is because we are guaranteed to at least get 1 number in the first round which immediately puts us into the first case again
+            //    }
+            //    else
+            //    {
+                    Recurse(1.0, ref result, numRolls, 1, 6, 5, numWant, numWork, 5);
+            //    }
+            //}
 
             //Console.WriteLine("PercentOfAKind is returning " + result);
             return result * 100;

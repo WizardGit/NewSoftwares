@@ -48,9 +48,11 @@
             this.TransactionsGrpBox = new System.Windows.Forms.GroupBox();
             this.UsrConfigGrpBox = new System.Windows.Forms.GroupBox();
             this.LoginGrpBox = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TransactionsGrpBox.SuspendLayout();
             this.UsrConfigGrpBox.SuspendLayout();
             this.LoginGrpBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // AddUserBtn
@@ -137,9 +139,9 @@
             // 
             // LoginBtn
             // 
-            this.LoginBtn.Location = new System.Drawing.Point(72, 103);
+            this.LoginBtn.Location = new System.Drawing.Point(82, 87);
             this.LoginBtn.Name = "LoginBtn";
-            this.LoginBtn.Size = new System.Drawing.Size(110, 23);
+            this.LoginBtn.Size = new System.Drawing.Size(100, 23);
             this.LoginBtn.TabIndex = 9;
             this.LoginBtn.Text = "Log In";
             this.LoginBtn.UseVisualStyleBackColor = true;
@@ -148,7 +150,7 @@
             // userLbl
             // 
             this.userLbl.AutoSize = true;
-            this.userLbl.Location = new System.Drawing.Point(11, 136);
+            this.userLbl.Location = new System.Drawing.Point(11, 116);
             this.userLbl.Name = "userLbl";
             this.userLbl.Size = new System.Drawing.Size(45, 13);
             this.userLbl.TabIndex = 10;
@@ -251,27 +253,39 @@
             this.LoginGrpBox.Controls.Add(this.LoginBtn);
             this.LoginGrpBox.Location = new System.Drawing.Point(286, 12);
             this.LoginGrpBox.Name = "LoginGrpBox";
-            this.LoginGrpBox.Size = new System.Drawing.Size(200, 161);
+            this.LoginGrpBox.Size = new System.Drawing.Size(200, 142);
             this.LoginGrpBox.TabIndex = 19;
             this.LoginGrpBox.TabStop = false;
             this.LoginGrpBox.Text = "Login";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Budgette.Properties.Resources.NeighborhoodWatch;
+            this.pictureBox1.Location = new System.Drawing.Point(286, 160);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 121);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 303);
+            this.ClientSize = new System.Drawing.Size(511, 298);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.LoginGrpBox);
             this.Controls.Add(this.UsrConfigGrpBox);
             this.Controls.Add(this.TransactionsGrpBox);
             this.Controls.Add(this.ViewAcctBalBtn);
             this.Controls.Add(this.QuitBtn);
             this.Name = "MainForm";
-            this.Text = "Main Form";
+            this.Text = "Budgette Software";
             this.TransactionsGrpBox.ResumeLayout(false);
             this.UsrConfigGrpBox.ResumeLayout(false);
             this.LoginGrpBox.ResumeLayout(false);
             this.LoginGrpBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -298,6 +312,7 @@
         private System.Windows.Forms.GroupBox TransactionsGrpBox;
         private System.Windows.Forms.GroupBox UsrConfigGrpBox;
         private System.Windows.Forms.GroupBox LoginGrpBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -31,16 +31,9 @@ namespace Budgette
             SqlCommand command = new SqlCommand("Select Name from tblBank where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                if (reader.Read())
+                while (reader.Read())
                     BankComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-            }
-
-            command = new SqlCommand("Select Name from tblAccount where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
-            using (SqlDataReader reader = command.ExecuteReader())
-            {
-                if (reader.Read())
-                    AccountComboBox.Items.Add(string.Format("{0}", reader["Name"]));
-            }
+            }           
 
             con.Close();
         }        
@@ -58,7 +51,7 @@ namespace Budgette
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select balance from tblAccount where Bank = '" + BankComboBox.Text + "' and Name = '" + AccountComboBox.Text + "'", con);
+            SqlCommand cmd = new SqlCommand("select Balance from tblAccount where Bank = '" + BankComboBox.Text + "' and Name = '" + AccountComboBox.Text + "'", con);
             string strAccountBalance = "";
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -111,6 +104,22 @@ namespace Budgette
         private void RtnBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BankComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Budgette.Properties.Settings.MainDatabaseConnectionString"].ConnectionString);
+            con.Open();
+            AccountComboBox.Items.Clear();
+
+            SqlCommand command = new SqlCommand("Select Name from tblAccount where UserId= '" + ImpInfo.userId + "' and Bank= '" + BankComboBox.Text + "'order by Name asc", con);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                    AccountComboBox.Items.Add(string.Format("{0}", reader["Name"]));
+            }
+
+            con.Close();
         }
     }
 }

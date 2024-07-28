@@ -30,7 +30,7 @@ namespace Budgette
             SqlCommand command = new SqlCommand("Select Name from tblBank where UserId= '" + ImpInfo.userId + "' order by Name asc", con);
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                if (reader.Read())
+                while (reader.Read())
                     bankComboBox.Items.Add(string.Format("{0}", reader["Name"]));
             }
 

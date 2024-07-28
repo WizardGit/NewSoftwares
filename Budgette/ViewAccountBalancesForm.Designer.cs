@@ -38,23 +38,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.DisplayBalanceTxt = new System.Windows.Forms.Label();
             this.tableAdapterManager1 = new Budgette.MainDatabaseDataSetTableAdapters.TableAdapterManager();
+            this.tblAccountTableAdapter = new Budgette.MainDatabaseDataSetTableAdapters.tblAccountTableAdapter();
             this.WithdrawnMonthTxt = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.WithdrawMonthTxt = new System.Windows.Forms.Label();
             this.DepositMonthTxt = new System.Windows.Forms.Label();
             this.tblAccountDataGridView = new System.Windows.Forms.DataGridView();
-            this.mainDatabaseDataSet = new Budgette.MainDatabaseDataSet();
-            this.tblAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblAccountTableAdapter = new Budgette.MainDatabaseDataSetTableAdapters.tblAccountTableAdapter();
             this.accountIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainDatabaseDataSet = new Budgette.MainDatabaseDataSet();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,14 +65,14 @@
             this.BankComboBox.Name = "BankComboBox";
             this.BankComboBox.Size = new System.Drawing.Size(121, 21);
             this.BankComboBox.TabIndex = 0;
+            this.BankComboBox.SelectedIndexChanged += new System.EventHandler(this.BankComboBox_SelectedIndexChanged);
             // 
             // AccountComboBox
             // 
-            this.AccountComboBox.FormattingEnabled = true;
-            this.AccountComboBox.Location = new System.Drawing.Point(87, 45);
+            this.AccountComboBox.Location = new System.Drawing.Point(87, 50);
             this.AccountComboBox.Name = "AccountComboBox";
             this.AccountComboBox.Size = new System.Drawing.Size(121, 21);
-            this.AccountComboBox.TabIndex = 1;
+            this.AccountComboBox.TabIndex = 16;
             // 
             // label1
             // 
@@ -106,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 45);
+            this.label2.Location = new System.Drawing.Point(12, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 5;
@@ -139,6 +139,10 @@
             this.tableAdapterManager1.tblTransactionTableAdapter = null;
             this.tableAdapterManager1.tblUserTableAdapter = null;
             this.tableAdapterManager1.UpdateOrder = Budgette.MainDatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // tblAccountTableAdapter
+            // 
+            this.tblAccountTableAdapter.ClearBeforeFill = true;
             // 
             // WithdrawnMonthTxt
             // 
@@ -192,20 +196,6 @@
             this.tblAccountDataGridView.Size = new System.Drawing.Size(628, 150);
             this.tblAccountDataGridView.TabIndex = 14;
             // 
-            // mainDatabaseDataSet
-            // 
-            this.mainDatabaseDataSet.DataSetName = "MainDatabaseDataSet";
-            this.mainDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblAccountBindingSource
-            // 
-            this.tblAccountBindingSource.DataMember = "tblAccount";
-            this.tblAccountBindingSource.DataSource = this.mainDatabaseDataSet;
-            // 
-            // tblAccountTableAdapter
-            // 
-            this.tblAccountTableAdapter.ClearBeforeFill = true;
-            // 
             // accountIdDataGridViewTextBoxColumn
             // 
             this.accountIdDataGridViewTextBoxColumn.DataPropertyName = "AccountId";
@@ -235,6 +225,16 @@
             this.userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
             this.userIdDataGridViewTextBoxColumn.HeaderText = "UserId";
             this.userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
+            // 
+            // tblAccountBindingSource
+            // 
+            this.tblAccountBindingSource.DataMember = "tblAccount";
+            this.tblAccountBindingSource.DataSource = this.mainDatabaseDataSet;
+            // 
+            // mainDatabaseDataSet
+            // 
+            this.mainDatabaseDataSet.DataSetName = "MainDatabaseDataSet";
+            this.mainDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // groupBox1
             // 
@@ -268,8 +268,8 @@
             this.Text = "ViewAccountBalancesForm";
             this.Load += new System.EventHandler(this.ViewAccountBalancesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblAccountBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDatabaseDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
